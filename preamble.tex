@@ -13,6 +13,7 @@
 \RequirePackage{braket}
 %\RequirePackage{xfrac} %for sfrac
 \usepackage{eqparbox}
+\usepackage{cancel}
 
 %\let\proof\relax
 %\let\endproof\relax
@@ -63,9 +64,22 @@
 
 \usepackage{comment}
 \usepackage{qcircuit}
+%\usepackage{quantikz}
 \usepackage{circuitikz}
 \usepackage{tabto}
 
+
+\newenvironment{refframe}[1]
+    {
+	\begin{refsection}
+	\begin{frame}{#1}
+    }
+    {
+	\vfill
+	\printbibliography[section=\therefsection]
+	\end{frame}
+	\end{refsection}
+    }
 
 
 \newenvironment<>{varblock}[2][\textwidth]{
