@@ -198,7 +198,7 @@ $
 
 	\begin{block}{\bf Compilation is essential}
 		\begin{itemize}
-		\item Efficiently utilize early frugile quantum computers
+		\item Efficiently utilize early frugale quantum computers
 %		\item ....
 		\item Error correction requires hybrid solutions with fast classical components
 		\end{itemize}
@@ -293,7 +293,7 @@ $
 
 
 
-\begin{frame}{Quantum Circuit Compilation}
+\begin{frame}{Automated Reasoning in Quantum Circuit Compilation}
 
 \vfill
 
@@ -309,7 +309,7 @@ $
 	\begin{itemize}
 			\item Decision diagrams
 			\item SAT / SMT / \#SAT
-			\item Diagrammatic languages
+%			\item Diagrammatic languages
 		\end{itemize}
 %		}
 	\end{block}
@@ -318,7 +318,7 @@ $
 \col{5cm}{
 	\begin{block}{\bf Quantum Circuit Compilation}
 		\begin{itemize}
-		\item \st{optimization / synthesis}
+		\item {optimization / synthesis}
 		\item \color{OliveGreen}simulation
 		\item \color{red}equivalence checking 
 		\end{itemize}
@@ -359,10 +359,12 @@ $
 
 
 		\begin{enumerate}
-			\item[0.] Quantum Computing
-			\item Decision diagrams
-			\item SAT / SMT / \#SAT
-			\item Diagrammatic languages
+			\item[0.] Quantum Computing \\~\\
+			\item SAT-based methods
+			\item DD-based methods
+%			\item Diagrammatic languages
+\\
+~\\
 			\item Translating results back Quantum Physics
 		\end{enumerate}
 \end{frame}
@@ -847,7 +849,7 @@ e/.default=black
 
 \onslide<6->{
   \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
-	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum circuit simulation (probability)};
+	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum circuit simulation};
 	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
 }
 

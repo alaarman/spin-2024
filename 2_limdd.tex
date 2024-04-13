@@ -163,6 +163,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 ~\\
 \pause
 
+\centering
 
 \tikzset{every picture/.style={->,thick}}
 ~\hspace{-1cm}
@@ -179,55 +180,45 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
     ]
 
 
-
-    % nodes    
+    % nodes
     \node[draw,circle] (a1) {};
     \node[draw,circle, below = .45cm of a1, xshift=-.9cm] (a2) {};
     \node[draw,circle, below = .45cm of a1, xshift= .9cm] (a3) {};
-    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
-    \draw[e0=  0] (a2) edge  node[] {} (a41);
-
+%    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
     \node[draw,circle, below = .45cm of a2, xshift= .3cm] (a42) {};
     \node[draw,circle, below = .45cm of a3, xshift=-.3cm] (a43) {};
     \node[draw,circle, below = .45cm of a3, xshift= .3cm] (a44) {};
-    \node[leaf, below=.45cm of a41, xshift=-.5cm      ] (w1) {$1$};
-    \draw[e0=  0] (a41) edge  node[] {} (w1);
 
-\onslide<2>{
-    \node[leaf, right= .02cm of w1,inner sep=0pt] (w2) {$0$};
-    \draw[e1=  0] (a41) edge  node[] {} (w2);
-}
-    \node[leaf, right= .04cm of w2,inner sep=0pt] (w3) {$2$};
-\onslide<2>{
-    \node[leaf, right= .02cm of w3,inner sep=0pt] (w4) {$0$};
-    \draw[e1=  0] (a42) edge  node[] {} (w4);
-}
-    \node[leaf, right= .02cm of w4,inner sep=0pt] (w5) {$1$};
-\onslide<2>{
-    \node[leaf, right= .02cm of w5,inner sep=0pt] (w6) {$0$};
-    \draw[e1=  0] (a43) edge  node[] {} (w6);
-}
-    \node[leaf, right= .02cm of w6,inner sep=0pt] (w7) {$-2$};
-\onslide<2>{
-    \node[leaf, right= .02cm of w7,inner sep=0pt] (w8) {$0$};
-    \draw[e1=  0] (a44) edge  node[] {} (w8);
-}
-        
+%\only<-2,5->{
+    \node[leaf, below= .45cm of a42, xshift= -.13cm, inner sep=0pt] (w3) {$2$};
+    \node[leaf, right= .32cm of w3,inner sep=0pt] (w5) {$1$};
+    \node[leaf, right= .32cm of w5,inner sep=0pt] (w7) {$-2$};
+
+    \draw[e0= 0] (a42) edge   (w3);
+    \draw[e0= 0] (a43) edge   (w5);
+    \draw[e0= 0] (a44) edge  (w7);
+%}
+
+%\only<3-4>{
+%    \node[leaf, below= .45cm of a42, xshift=.6cm] (w1) {$1$};
+%    
+%    \draw[e0= 0] (a42) edge  node[above right,pos=.3] {$2$} (w1);
+%    \draw[e0= 0] (a43) edge  node[above left,pos=.3] {} (w1);
+%    \draw[e0=-20] (a44) edge  node[pos=.4,below right] {$-2$} (w1);
+%}
+
+
     % edges
     \draw[<-] (a1) --++(90:2cm) node[right,pos=.7] {};
     \draw[e0 = 0] (a1) edge  node[] {} (a2);
     \draw[e1 = 0] (a1) edge  node[] {} (a3);
 
+    \draw[e0=  0] (a2) edge  node[] {} (a43);
     \draw[e1=  0] (a2) edge  node[] {} (a42);
     \draw[e0=  0] (a3) edge  node[] {} (a43);
     \draw[e1=  0] (a3) edge  node[] {} (a44);
-    \draw[e0=  0] (a42) edge  node[] {} (w3);
-    \draw[e0=  0] (a43) edge  node[] {} (w5);
-    \draw[e0=  0] (a44) edge  node[] {} (w7);
 
-
-
-
+  
 \node[left = 1.3cm of a1.south,yshift=-1cm] (vec) {
     \begin{minipage}{1.7cm}\footnotesize
     $
@@ -244,91 +235,16 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 };
 
 
-    \node[below= 2.5cm of a1]   (dt)  {Decision tree};
+ \node[below= 2.5cm of a1,text width= 2.99cm]  (add)   {\centering Multi-Terminal DD (MTBDD)};
 
-
-
-\pause
-
-
-\pause
-
-
-    \node[draw,circle, below = .45cm of a2, xshift=-.3cm,fill=red] (a41) {};
-%    \node[draw,circle, below = .45cm of a2, xshift= .3cm,fill=purple] (a42) {};
-    \node[draw,circle, below = .45cm of a3, xshift=-.3cm,fill=green] (a43) {};
-%    \node[draw,circle, below = .45cm of a3, xshift= .3cm,fill=blue] (a44) {};
-
-\only<4>{
-\node[right= of a1, text width = 3cm] {
-\color{red}$f_{00} = \begin{bmatrix*}[c]
-    				   1 \\ 0\\
-    				\end{bmatrix*}$\\\vspace{3mm}
-\color{green}\scriptsize$ f_{10} = f_{00}$\\\vspace{4mm}
-};
-}
-
-
-\pause
-
-    % nodes
-    \node[draw,circle, right= 3.5cm of a1] (a1) {};
-    \node[draw,circle, below = .45cm of a1, xshift=-.9cm] (a2) {};
-    \node[draw,circle, below = .45cm of a1, xshift= .9cm] (a3) {};
-%    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
-    \node[draw,circle, below = .45cm of a2, xshift= .3cm] (a42) {};
-    \node[draw,circle, below = .45cm of a3, xshift=-.3cm,shade, shading=axis, left color=red,  right color=green, shading angle=90] (a43) {};
-    \node[draw,circle, below = .45cm of a3, xshift= .3cm] (a44) {};
-
-\only<-5,9->{
-    \node[leaf, below= .45cm of a42, xshift= -.13cm, inner sep=0pt] (w3) {$2$};
-	\onslide<2>{
-    \node[leaf, right= .02cm of w3,inner sep=0pt] (w4) {$0$};
-	}
-    \node[leaf, right= .02cm of w4,inner sep=0pt] (w5) {$1$};
-	\onslide<2>{
-    \node[leaf, right= .02cm of w5,inner sep=0pt] (w6) {$0$};
-	}
-    \node[leaf, right= .02cm of w6,inner sep=0pt] (w7) {$-2$};
-
-    \draw[e0= 0] (a42) edge   (w3);
-    \draw[e0= 0] (a43) edge   (w5);
-    \draw[e0= 0] (a44) edge  (w7);
-}
-
-\only<6-8>{
-    \node[leaf, below= .45cm of a42, xshift=.6cm] (w1) {$1$};
-    
-    \draw[e0= 0] (a42) edge  node[above right,pos=.3] {$2$} (w1);
-    \draw[e0= 0] (a43) edge  node[above left,pos=.3] {} (w1);
-    \draw[e0=-20] (a44) edge  node[pos=.4,below right] {$-2$} (w1);
-}
-
-
-    % edges
-    \draw[<-] (a1) --++(90:2cm) node[right,pos=.7] {};
-    \draw[e0 = 0] (a1) edge  node[] {} (a2);
-    \draw[e1 = 0] (a1) edge  node[] {} (a3);
-
-    \draw[e0=  0] (a2) edge  node[] {} (a43);
-    \draw[e1=  0] (a2) edge  node[] {} (a42);
-    \draw[e0=  0] (a3) edge  node[] {} (a43);
-    \draw[e1=  0] (a3) edge  node[] {} (a44);
-
-    
-
-    \node[below= 2.5cm of a1,text width= 2.99cm]  (add)   {\centering Multi-Terminal DD (MTBDD)};
-
-
-\pause
-\pause
+\pause[3]
 
 %    \node[draw,circle, below = .45cm of a2, xshift=-.3cm,fill=red] (a41) {};
     \node[draw,circle, below = .45cm of a2, xshift= .3cm,fill=purple] (a42) {};
     \node[draw,circle, below = .45cm of a3, xshift=-.3cm,fill=green] (a43) {};
     \node[draw,circle, below = .45cm of a3, xshift= .3cm,fill=blue] (a44) {};
 
-\only<7>{
+\only<3>{
 \node[right= of a3, text width = 3cm] {
 \color{green}$f_{00} = f_{10} = \begin{bmatrix*}[c]
     				   1, \\ 0\phantom{,}\\
@@ -368,8 +284,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 
 \pause
 
-\node[below= .3cm of dt, xshift=-2cm] {\alert{\textbf{Merge nodes $v, w$: }}};
-\node[below= .3cm of dt] {\alert{~~~~Never}};
+\node[below= .3cm of add, xshift=-2cm] {\alert{\textbf{Merge nodes $v, w$: }}};
 \node[below= .3cm of add] {\alert{$\vec v = \vec w$ }};
 \node[below= .3cm of aadd, xshift=.cm,text width = 4cm,align=center] {\alert{$\vec v = \gamma \cdot \vec w$\\ \vspace{3mm}(equivalent up to a complex factor $\lambda$)}};
 
@@ -402,7 +317,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 %SLDD$_\times$~(2005)~\cite{wilson2005decision}	& $f = \gamma\cdot g$   & $\gamma \in \complex, \mathbb R, \dots$  \\
 %EVBDD (1994)~\cite{lai1994evbdd}, SLDD$_+$ (2013)~\cite{fargier2013semiring}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
 %FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%%\limdd~\cite{vinkhuijzen2021limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%%\limdd~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
 %\hline
 %\end{tabular}
 %\end{table}
@@ -410,7 +325,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 %\vspace{-.8em}
 %
 %
-%\nocite{limdd2}
+%%\nocite{limdd2}
 %
 %\end{refframe}
 
@@ -431,10 +346,10 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 \textbf{Original}				& \textbf{Node merging} &  \\\hline
 %Decision Tree	& (no merging) &  \\
  QuiDD~(2003)~\cite{viamontes2003improving}					    &MTBDD (1993)  & $f = g$  &  \\
- QMDD~(2006)~\cite{qmdd}, TDD~(2020)~\cite{hong2022tensor}   & EVDD~(1994)  &$f = \gamma\cdot g$   & $\gamma \in \complex, \dots$  \\
+ QMDD~(2006)~\cite{qmdd}, Tensor DD~(2020)~\cite{hong2022tensor}   & EVDD~(1994)  &$f = \gamma\cdot g$   & $\gamma \in \complex, \dots$  \\
 %SLDD$_+$~\cite{fargier2013semiring}, EVBDD~\cite{lai1994evbdd}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
 %AADD~\cite{sanner2005AffineADDs}, FEVBDD~\cite{tafertshofer1997factored} 		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%&\limdd~(2021)~\cite{vinkhuijzen2021limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%&\limdd~(2021)~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
 %%&QDD~(TODO)~\cite{TODO}					& () \\
 %&CFLOBDD~(2023)~\cite{TODO}				& (more like SDD)  \\
 \hline
@@ -447,9 +362,9 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 
 \begin{block}<2->{Applications for Quantum Circuits:}
 \begin{itemize}
-	\item Simulation~\cite{viamontes2003improving,8382253}			\hfill   $G_k\cdots G_1 \cdot \vec v$
-	\item Equivalence checking~\cite{burgholzer2020improved} \hfill $U \cdot V^\dagger = I$
-	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
+	\item Simulation			\hfill   $G_k\cdots G_1 \cdot \vec v$
+	\item Equivalence checking	 \hfill $U \cdot V^\dagger = I$
+%	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
 \end{itemize}
 \end{block}
 
@@ -457,12 +372,10 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 \begin{alertblock}<3->{Exploiting Historical Parallels}
 	\begin{itemize}
 	\item<+-> Addition is hard for EVDD~\cite{fargier2013semiring}, hence Hadamard gates are hard for QMDD
-	\item<+-> QMDD is prone to numerical instability~\cite{niemann2020overcoming}
-		\\
-		
-		 \phantom{ZZZZZZZZZZZZZZZZZ}~(as also pointed out by Scott Sanner~\cite{aadd} for EVDD)
+	\item<+-> EVDD is prone to numerical instability (\cite{aadd}), and so is QMDD~\cite{niemann2020overcoming}
 	\end{itemize}
 \end{alertblock}
+\vspace{-.8em}
 
 
 \end{refframe}
@@ -481,8 +394,8 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 
 \begin{alertblock}{Performance Characteristics for Simulation~\cite{grurl2020arrays}}
 	\begin{itemize}
-		\item<+-> Very fast and memory-efficient for structured quantum circuits
-		\item<+-> QMDD is prone to numerical instability~\cite{niemann2020overcoming}
+		\item Very fast and memory-efficient for structured quantum circuits
+		\item QMDD is prone to numerical instability~\cite{niemann2020overcoming}
 	\end{itemize}
 \end{alertblock}
 
@@ -523,7 +436,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 \end{alertblock}
 
 
-\begin{theorem}[\cite{vinkhuijzen2021limdd} ]
+\begin{theorem}[\cite{limdd} ]
 QMDD requires $2^{\Omega({{n}})}$ space to represent 
 	$ n\times  n$ grid graph states.
 \end{theorem}
@@ -660,7 +573,7 @@ QMDD requires $2^{\Omega({{n}})}$ space to represent
 
 
 
-\begin{frame}{\alert{Own Contribution:} LIMDD}
+\begin{refframe}{\alert{Own Contribution:} Local Invertible Map DD (LIMDD)}
 
 \centering
 	
@@ -723,9 +636,10 @@ QMDD requires $2^{\Omega({{n}})}$ space to represent
 
 \end{tikzpicture}
 
+\phantom{\cite{limdd}}
+
 	
-	
-\end{frame}
+\end{refframe}
 
 
 
@@ -904,7 +818,7 @@ QMDD
 %%SLDD$_\times$~(2005)~\cite{wilson2005decision}	& $f = \gamma\cdot g$   & $\gamma \in \complex, \mathbb R, \dots$  \\
 %%EVBDD (1994)~\cite{lai1994evbdd}, SLDD$_+$ (2013)~\cite{fargier2013semiring}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
 %%FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{sanner2005AffineADDs}		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%%%\limdd~\cite{vinkhuijzen2021limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%%%\limdd~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
 %%\hline
 %%\end{tabular}
 %%\end{table}
@@ -922,7 +836,7 @@ QMDD
 %%SLDD$_+$~\cite{fargier2013semiring}, EVBDD~\cite{lai1994evbdd}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
 %%AADD~\cite{sanner2005AffineADDs}, FEVBDD~\cite{tafertshofer1997factored} 		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
 %%QDD~(2008)~\cite{wang2008xqdd}					& $f =  R_X(\theta) \cdot g$  & $\theta \in \real$ \\
-%\limdd~(2021)~\cite{vinkhuijzen2021limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%\limdd~(2021)~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
 %CFLOBDD~(2023)~\cite{sistla2023weighted}				& (more like SDD)  & \\
 %\hline
 %\end{tabular}

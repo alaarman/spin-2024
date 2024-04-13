@@ -1,7 +1,7 @@
-\section{Satisfiability}[noframenumbering]
+\section{Satisfiability}
 
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 	
 \vfill
 \centering
@@ -21,9 +21,10 @@
 
 \begin{block}{Berent et al. --- Towards a SAT Encoding for .. \cite{berent2022towards}}
 \begin{itemize}
-\item Exponential-length encoding of universal circuits (requiring a simulator)
-\pause
-\item Stabilizer circuit simulation and equivalence checking
+%\item Exponential-length encoding of universal circuits (requiring a simulator)
+%\pause
+\item Stabilizer circuit simulation  			\hfill (non-universal)
+\item Stabilizer circuit equivalence checking	\hfill (non-universal)
 \end{itemize}
 \end{block}
 
@@ -42,15 +43,15 @@ e/.default=black
 %\draw[help lines] (0,0) grid (4,3);
 
 
-  \node [e = yellow!0!red!80!white,text width=2.8cm,align=center, minimum width=.8cm,  minimum height=3.6cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.25cm]north:Precise\QMA = \PSPACE}] (PSPACE) at (.8,0.5) {};
-	\node[right = of PSPACE.north east] (ECEQ) {\color{red} \textbf{Exact} quantum circuit non-equivalence};
-	\draw[-Circle,shorten >= -.2cm] (ECEQ) -- (PSPACE.north east);
-
-
-
-  \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
-	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum circuit simulation};
-	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
+%  \node [e = yellow!0!red!80!white,text width=2.8cm,align=center, minimum width=.8cm,  minimum height=3.6cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.25cm]north:Precise\QMA = \PSPACE}] (PSPACE) at (.8,0.5) {};
+%	\node[right = of PSPACE.north east] (ECEQ) {\color{red} \textbf{Exact} quantum circuit non-equivalence};
+%	\draw[-Circle,shorten >= -.2cm] (ECEQ) -- (PSPACE.north east);
+%
+%
+%
+%  \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
+%	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum circuit simulation};
+%	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
 
 
 
@@ -100,12 +101,12 @@ e/.default=black
 \begin{block}{symQV: Automated Symbolic Verification of ... \cite{bauermarquart2023symqv}}
 \begin{itemize}
 \item<+-> Efficient SMT-encoding of \alert{universal} quantum circuits
-\item<+-> Uses \alert{undecidable} theory: NLA with trigonometric expressions
-\item<.-> Limited scaling
+\item<3-> Uses \alert{undecidable} theory: NLA with trigonometric expressions
+\item<3-> Limited scaling
 \end{itemize}
 \end{block}
 
-\onslide<3->{
+\onslide<2->{
 \centering
 \scalebox{1.3}{
 $
@@ -130,9 +131,10 @@ $
 \begin{block}{Simulating Quantum Circuits by Weighted Model Counting (WMC)\cite{mei2024simulating}}
 \begin{itemize}
 \item<+-> Use density matrix instead of state vector
-\item<6-> Represent in Pauli basis, i.e., $\rho = \sum_j  \alpha_j P_j$  
-\item<7-> \alert{Obviates the need for complex weights $\alpha_j$}
-\item<8-> \alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
+%\item<6-> Represent in Pauli basis, i.e., $\rho = \sum_j  \alpha_j P_j$  
+%\item<7-> \alert{Obviates the need for complex weights $\alpha_j$}
+\item<4-> \alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
+\item<5-> Negative weights: \alert{constructive and destructive interference}
 \end{itemize}
 \end{block}
 
@@ -200,7 +202,7 @@ Simulating Quantum Circuits by Weighted Model Counting (WMC) \cite{mei2024simula
 \item<.-> Optimize (weighted) model counters for quantum problems (XOR constraints)
 \item<+-> Support of negative weights in approximate counters
 \item<+-> Support of negative weights in (approximate) samplers (weak simulation)
-\item<+-> Complexity-theoretic questions about combining approximate counting +quantum
+%\item<+-> Complexity-theoretic questions about combining approximate counting +quantum
 \end{itemize}
 \end{alertblock}
 
@@ -210,71 +212,71 @@ Simulating Quantum Circuits by Weighted Model Counting (WMC) \cite{mei2024simula
 
 
 
-\section{Diagrammatic}
-
-
-\begin{frame}[noframenumbering]
-	
-\vfill
-\centering
-
-\vspace{-.5cm}\textbf{\Large Diagrammatic Methods in Quantum Circuit Compilation}\vspace{-.5cm}
-
-\vfill
-
-\centering
-\alert{(An even more incomplete overview)}
-
-\end{frame}
-
-
-
-\begin{refframe}{ZX Calculus}
-
-\centering
-\includegraphics[width=7cm]{graphics/coecke}	
-
-Bob Coecke ~~~~\&~~~~~~Ross Duncan~\cite{cd2011}
-
-
-\onslide<2->{
-\includegraphics[width=4cm]{graphics/zx1}	
-}
-%\includegraphics[width=3cm]{graphics/zx2}	
-
-
-\end{refframe}
-
-
-
-\begin{refframe}{ZX Calculus Heuristics}
-
-\begin{block}{Algorithms based on ZX calculus}
-Loop until convergence:
-\begin{enumerate}
-	\item Simplification step
-	\item Brute-force step
-\end{enumerate}
-\end{block}
-
-
-\begin{block}{Applications}
-\begin{itemize}
-	\item Simulation
-	\item Equivalence checking
-	\item Synthesis
-	\item Optimization
-\end{itemize}
-\end{block}
-
-\phantom{
-\cite{Duncan20,PyZXLS}
-}
-	
-\end{refframe}
-
-
-
+%\section{Diagrammatic}
+%
+%
+%\begin{frame}[noframenumbering]
+%	
+%\vfill
+%\centering
+%
+%\vspace{-.5cm}\textbf{\Large Diagrammatic Methods in Quantum Circuit Compilation}\vspace{-.5cm}
+%
+%\vfill
+%
+%\centering
+%\alert{(An even more incomplete overview)}
+%
+%\end{frame}
+%
+%
+%
+%\begin{refframe}{ZX Calculus}
+%
+%\centering
+%\includegraphics[width=7cm]{graphics/coecke}	
+%
+%Bob Coecke ~~~~\&~~~~~~Ross Duncan~\cite{cd2011}
+%
+%
+%\onslide<2->{
+%\includegraphics[width=4cm]{graphics/zx1}	
+%}
+%%\includegraphics[width=3cm]{graphics/zx2}	
+%
+%
+%\end{refframe}
+%
+%
+%
+%\begin{refframe}{ZX Calculus Heuristics}
+%
+%\begin{block}{Algorithms based on ZX calculus}
+%Loop until convergence:
+%\begin{enumerate}
+%	\item Simplification step
+%	\item Brute-force step
+%\end{enumerate}
+%\end{block}
+%
+%
+%\begin{block}{Applications}
+%\begin{itemize}
+%	\item Simulation
+%	\item Equivalence checking
+%	\item Synthesis
+%	\item Optimization
+%\end{itemize}
+%\end{block}
+%
+%\phantom{
+%\cite{Duncan20,PyZXLS}
+%}
+%	
+%\end{refframe}
+%
+%
+%
 
 
 

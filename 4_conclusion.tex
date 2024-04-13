@@ -32,24 +32,24 @@ e/.default=black
 
 %\draw[help lines] (0,0) grid (4,3);
 
-
-  \node [e = yellow!0!red!80!white,text width=2.8cm,align=center, minimum width=.8cm,  minimum height=3.6cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.25cm]north:Precise\QMA = \PSPACE}] (PSPACE) at (.8,0.5) {};
-	\node[right = of PSPACE.north east, xshift=-.6cm] (ECEQ) {\color{red} \textbf{Exact} quantum circuit non-equivalence};
-	\draw[-Circle,shorten >= -.2cm] (ECEQ) -- (PSPACE.north east);
-
-
-
-\onslide<2->{
-	\node[above right = of PSPACE.north east, xshift=-.6cm] (LHP) {\color{red} \underline{\textbf{Exact} Local Hamiltonian Problem}};
-	\draw[-Circle,shorten >= -.2cm] (LHP) -- (PSPACE.north east);
-}
-
-
-  \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
-\onslide<2->{
-	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum many-body physics};
-	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
-}
+%
+%  \node [e = yellow!0!red!80!white,text width=2.8cm,align=center, minimum width=.8cm,  minimum height=3.6cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.25cm]north:Precise\QMA = \PSPACE}] (PSPACE) at (.8,0.5) {};
+%	\node[right = of PSPACE.north east, xshift=-.6cm] (ECEQ) {\color{red} \textbf{Exact} quantum circuit non-equivalence};
+%	\draw[-Circle,shorten >= -.2cm] (ECEQ) -- (PSPACE.north east);
+%
+%
+%
+%\onslide<2->{
+%	\node[above right = of PSPACE.north east, xshift=-.6cm] (LHP) {\color{red} \underline{\textbf{Exact} Local Hamiltonian Problem}};
+%	\draw[-Circle,shorten >= -.2cm] (LHP) -- (PSPACE.north east);
+%}
+%
+%
+%  \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
+%\onslide<2->{
+%	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum many-body physics};
+%	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
+%}
 
 
   \node [e = yellow!40!red!50!white,text width=2cm,align=center, minimum width=.8cm,  minimum height=2cm,text opacity=1,label={[anchor=north, inner sep=3pt]north:\QMA}] (QMA) at (.75,0.1) {};
@@ -59,7 +59,7 @@ e/.default=black
 
 
 \onslide<2->{
-	\node[below right = of QMA.north east] (LHP) {\color{red} \underline{Local Hamiltonian Problem}};
+	\node[above right = of QMA.north east] (LHP) {\color{red} \underline{Local Hamiltonian Problem}};
 	\draw[-Circle,shorten >= -.2cm] (LHP) -- (QMA.north east);
 }
 
@@ -69,6 +69,8 @@ e/.default=black
   
   
 	\node [e = blue!80!white, opacity=0.5, minimum height=1cm] (BQP) at (1,0) {~~~~~~~~~~~~~~~\BQP};
+	 \node[right = of BQP,text width=3cm] (QSIM) {\color{OliveGreen} Quantum Circuit Simulation};
+  \draw[-Circle,shorten >= -.18cm] (QSIM) -- (BQP);
 \onslide<2->{
   \node[below right = of BQP,text width=3cm] (QCS) {\color{OliveGreen} Quantum many-body physics};
   \draw[-Circle,shorten >= -.18cm] (QCS) -- (BQP);
@@ -116,7 +118,7 @@ Physicists use {tensor networks} (e.g. \textbf{MPS}) and restricted Boltzmann Ma
 }
 
 \onslide<2->{
-As a first step to unifying these approaches, we give a first ``knowledge compilation map'' for quantum information~\cite{vinkhuijzen2024a}:
+As a first step to unifying these approaches, we give a first ``knowledge compilation map'' (after Darwiche's seminal work) for quantum information~\cite{vinkhuijzen2024a}:
 }
 
 
