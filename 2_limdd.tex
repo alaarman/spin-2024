@@ -154,11 +154,11 @@
 
 
 
-\begin{frame}[fragile]{Quantum State Representation with
+\begin{refframe}[fragile]{Quantum State Representation with
 					\alert{Decision Diagrams}}
 
 %\vspace{-1em}
-We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \colon \set{0,1}^n \to \complex$, or alternatively as an exponentially-sized complex vector:
+We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon \set{0,1}^n \to \complex$, or alternatively as an exponentially-sized complex vector:
 
 ~\\
 \pause
@@ -291,12 +291,18 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
     \onslide<1->
 \end{tikzpicture}
 
-\pause
+\onslide<+->{
 \centering
 \alert{(EVDD can be exponentially more succinct than MTBDD.)}
+}
 
 
-\end{frame}
+\phantom{
+\cite{fujita1997multi,Vrudhula1996}
+}
+
+
+\end{refframe}
 
 
 
@@ -332,53 +338,53 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 
 
 
-\begin{refframe}{Chronology of Decision Diagrams in Quantum Computing}
-	
-\vspace{-.8em}
-
-	
-\begin{table}
-\centering\footnotesize
-\def\arraystretch{1.5}
-\begin{tabular}{|p{4.5cm}|p{1.5cm}|c|c|}
-\hline
-\textbf{Quantum variant}	&
-\textbf{Original}				& \textbf{Node merging} &  \\\hline
-%Decision Tree	& (no merging) &  \\
- QuiDD~(2003)~\cite{viamontes2003improving}					    &MTBDD (1993)  & $f = g$  &  \\
- QMDD~(2006)~\cite{qmdd}, Tensor DD~(2020)~\cite{hong2022tensor}   & EVDD~(1994)  &$f = \gamma\cdot g$   & $\gamma \in \complex, \dots$  \\
-%SLDD$_+$~\cite{fargier2013semiring}, EVBDD~\cite{lai1994evbdd}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
-%AADD~\cite{sanner2005AffineADDs}, FEVBDD~\cite{tafertshofer1997factored} 		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%&\limdd~(2021)~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
-%%&QDD~(TODO)~\cite{TODO}					& () \\
-%&CFLOBDD~(2023)~\cite{TODO}				& (more like SDD)  \\
-\hline
-\end{tabular}
-\end{table}
-
-\vspace{-.3em}
-
-
-
-\begin{block}<2->{Applications for Quantum Circuits:}
-\begin{itemize}
-	\item Simulation			\hfill   $G_k\cdots G_1 \cdot \vec v$
-	\item Equivalence checking	 \hfill $U \cdot V^\dagger = I$
-%	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
-\end{itemize}
-\end{block}
-
-
-\begin{alertblock}<3->{Exploiting Historical Parallels}
-	\begin{itemize}
-	\item<+-> Addition is hard for EVDD~\cite{fargier2013semiring}, hence Hadamard gates are hard for QMDD
-	\item<+-> EVDD is prone to numerical instability (\cite{aadd}), and so is QMDD~\cite{niemann2020overcoming}
-	\end{itemize}
-\end{alertblock}
-\vspace{-.8em}
-
-
-\end{refframe}
+%\begin{refframe}{Chronology of Decision Diagrams in Quantum Computing}
+%	
+%\vspace{-.8em}
+%
+%	
+%\begin{table}
+%\centering\footnotesize
+%\def\arraystretch{1.5}
+%\begin{tabular}{|p{4.5cm}|p{1.5cm}|c|c|}
+%\hline
+%\textbf{Quantum variant}	&
+%\textbf{Original}				& \textbf{Node merging} &  \\\hline
+%%Decision Tree	& (no merging) &  \\
+% QuiDD~(2003)~\cite{viamontes2003improving}					    &MTBDD (1993)  & $f = g$  &  \\
+% QMDD~(2006)~\cite{qmdd}, Tensor DD~(2020)~\cite{hong2022tensor}   & EVDD~(1994)  &$f = \gamma\cdot g$   & $\gamma \in \complex, \dots$  \\
+%%SLDD$_+$~\cite{fargier2013semiring}, EVBDD~\cite{lai1994evbdd}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
+%%AADD~\cite{sanner2005AffineADDs}, FEVBDD~\cite{tafertshofer1997factored} 		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
+%%&\limdd~(2021)~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%%%&QDD~(TODO)~\cite{TODO}					& () \\
+%%&CFLOBDD~(2023)~\cite{TODO}				& (more like SDD)  \\
+%\hline
+%\end{tabular}
+%\end{table}
+%
+%\vspace{-.3em}
+%
+%
+%
+%\begin{block}<2->{Applications for Quantum Circuits:}
+%\begin{itemize}
+%	\item Simulation			\hfill   $G_k\cdots G_1 \cdot \vec v$
+%	\item Equivalence checking	 \hfill $U \cdot V^\dagger = I$
+%%	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
+%\end{itemize}
+%\end{block}
+%
+%
+%\begin{alertblock}<3->{Exploiting Historical Parallels}
+%	\begin{itemize}
+%	\item<+-> Addition is hard for EVDD~\cite{fargier2013semiring}, hence Hadamard gates are hard for QMDD
+%	\item<+-> EVDD is prone to numerical instability (\cite{aadd}), and so is QMDD~\cite{niemann2020overcoming}
+%	\end{itemize}
+%\end{alertblock}
+%\vspace{-.8em}
+%
+%
+%\end{refframe}
 
 
 
@@ -395,7 +401,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 \begin{alertblock}{Performance Characteristics for Simulation~\cite{grurl2020arrays}}
 	\begin{itemize}
 		\item Very fast and memory-efficient for structured quantum circuits
-		\item QMDD is prone to numerical instability~\cite{niemann2020overcoming}
+		\item EVDD is prone to numerical instability~\cite{niemann2020overcoming}; exact representations solve this~\cite{9586191} 
 	\end{itemize}
 \end{alertblock}
 
@@ -425,11 +431,39 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 
 
 
-\begin{refframe}{\alert{Own Contribution:} Analysis of Quantum Decision Diagrams}
+\begin{refframe}{Analysis of Quantum Decision Diagrams}
 
-\begin{alertblock}{QMDD can't succinctly represent stabilizer states, yet:}
+\centering
+\begin{tikzpicture}\footnotesize
+  \tikzset{venn circle/.style={circle,minimum width=2cm,fill=####1,opacity=0.4}}
+  \node [venn circle=white,minimum width=2.5cm,draw] (A) at (0,0.3) {};
+  \node  at (0,1.25) 			{Quantum states};
+
+%  \node [venn circle = Red!40!white, ellipse,minimum height=2.2cm, minimum width=3.6cm] (L) at (0,0.6) {};
+%  \node  at (0,1.5) 		{\limdd};
+  
+%  \node [venn circle = blue!70!white,text width=1.3cm,align=center,rotate=79,ellipse,minimum height=1.8cm, minimum width=2.5cm] (B) at (-.6,-.2) {};
+%  \node[text width=1.3cm,align=center]  at (-.9,-1.) {MPS};
+
+
+%  \node [venn circle = green!70!white,text width=1.3cm,align=center,rotate=119,ellipse,minimum height=1.8cm, minimum width=2.5cm] (B) at (.6,-.2) {};
+%  \node[text width=1.3cm,align=center]  at (.9,-1.) {RBM};
+
+
+
+%  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm] (B) at (-.5,.3) 	{\textcolor{white}{QMDD}};						
+
+  \node [venn circle = OliveGreen,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1] (C) at (.5,.2) {\textcolor{white}{Stabilizer states}};
+\end{tikzpicture}	
+
+\alert{Stabilizer circuits are non-universal \& classically simulatable, but crucial in error correction, etc.}
+
+\pause
+
+
+\begin{alertblock}{EVDD can't succinctly represent stabilizer states, yet:}
 	\begin{itemize}
-%		\item For \alert{stabilizer states}, we proved  that QMDD can be exponential
+%		\item For \alert{stabilizer states}, we proved  that EVDD can be exponential
 		\item Stabilizers are a subset of states that are \alert{classically simulatable!}
 		\item Important in error correction, measurement-based QC and circuit equivalence
 	\end{itemize}
@@ -437,7 +471,7 @@ We can think of a quantum state $\ket{\phi}$ as a pseudo Boolean function $f \co
 
 
 \begin{theorem}[\cite{limdd} ]
-QMDD requires $2^{\Omega({{n}})}$ space to represent 
+EVDD requires $2^{\Omega({{n}})}$ space to represent 
 	$ n\times  n$ grid graph states.
 \end{theorem}
 
@@ -573,7 +607,7 @@ QMDD requires $2^{\Omega({{n}})}$ space to represent
 
 
 
-\begin{refframe}{\alert{Own Contribution:} Local Invertible Map DD (LIMDD)}
+\begin{refframe}{Local Invertible Map DD (LIMDD)}
 
 \centering
 	
@@ -651,7 +685,7 @@ QMDD requires $2^{\Omega({{n}})}$ space to represent
 
 
 
-\begin{refframe}{\alert{Own Contribution:} LIMDD}
+\begin{refframe}{LIMDD}
 	
 %
 %\begin{block}{Study different exact representations of quantum states}
@@ -672,7 +706,7 @@ QMDD requires $2^{\Omega({{n}})}$ space to represent
 \begin{block}{Theoretical Characteristics~\cite{vinkhuijzen2023efficient}}
 \vspace{-.5em}
 	\begin{itemize}
-		\item<+-> LIMDD is the only DD strictly more succinct than QMDD \& stabilizer formalism 
+		\item<+-> LIMDD is the only DD strictly more succinct than EVDD \& stabilizer formalism 
 		\item<+-> Simulation operations are tractable in LIMDD
 		\item<+-> Fidelity and inner product are not tractable~\cite{vinkhuijzen2024a}
 	\end{itemize}
@@ -702,7 +736,7 @@ QMDD requires $2^{\Omega({{n}})}$ space to represent
 %  \node[text width=1.3cm,align=center]  at (.9,-1.) {poly-RBM};
 
 
-  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (B) at (-.5,.3) 	{\textcolor{white}{poly-QMDD}};						
+  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (B) at (-.5,.3) 	{\textcolor{white}{poly-EVDD}};						
 
   \node [venn circle = OliveGreen!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (C) at (.5,.3) {\textcolor{white}{Stabilizer states}};
 
@@ -728,11 +762,11 @@ MTBDD   	& \Yar	& \Yes	& \Yes	& \Yes & \Yes
 %		| Add	| H		| XYZ	| CX	| Swap	| Local	| T
 		& \Yes	& \Yes 	& \Yes	& \Yes	& \Yes	& \Yes	& \Yes \\
 \hline
-QMDD
+EVDD
 		& \Yar	& \Yes	& \Yes	& \Yes & \Yes
 		& \No	& \No 	& \Yes	& \Yes	& \No	& \No	& \Yes \\
 \hline 
-%QMDD  & \Yes & \Yes & \Yes & \No & \Yes & \No & ?? & ??  & ?? & \No & ?? & ??   \\
+%EVDD  & \Yes & \Yes & \Yes & \No & \Yes & \No & ?? & ??  & ?? & \No & ?? & ??   \\
 %\hline    
 \alert{\limdd} 	& \Yar	& \Yes	& \Yes	& \Cond & \Cond
 		& \No	& \No	& \Yes	& \Yes	& \No	& \No	& \Yes  \\
@@ -771,32 +805,33 @@ QMDD
 
 
 
-%\begin{refsection}
-%\begin{frame}{\limdd Implementation}
-%
-%
-%\begin{exampleblock}{Circuit equivalence check implementation}
-%\begin{itemize}
-%	\item 	\limdd implemented in DDSIM~\cite{limdd2}.
-%	\item 	Tested on QFT, after random Clifford  circuit
-%\end{itemize}
-%\end{exampleblock}
-%
-%
-%\vspace{-.5em}
-%
-%\centering
-%\includegraphics[height=5.cm]{plot.png}
-%
-%\vspace{-.5em}
-%
-%\centering
-%\printbibliography[section=\therefsection]
-%\vspace{-1em}
-%\url{https://github.com/cda-tum/mqt-limdd}
-%
-%\end{frame}
-%\end{refsection}
+\begin{refsection}
+\begin{frame}{\limdd Implementation}
+
+
+\begin{exampleblock}{Circuit equivalence check implementation}
+\begin{itemize}
+	\item 	\limdd implemented in DDSIM~\cite{limdd2}.
+	\item 	Tested on QFT, after random Clifford  circuit
+\end{itemize}
+\end{exampleblock}
+
+
+\vspace{-.5em}
+
+\centering
+\includegraphics[height=5.cm]{plot.png}
+
+\vspace{-.5em}
+
+\centering
+\printbibliography[section=\therefsection]
+\vspace{-1em}
+\url{https://github.com/cda-tum/mqt-limdd}
+
+
+\end{frame}
+\end{refsection}
 
 
 

@@ -318,9 +318,9 @@ $
 \col{5cm}{
 	\begin{block}{\bf Quantum Circuit Compilation}
 		\begin{itemize}
+		\item {\color{OliveGreen}simulation}
+		\item {\color{red}equivalence checking }
 		\item {optimization / synthesis}
-		\item \color{OliveGreen}simulation
-		\item \color{red}equivalence checking 
 		\end{itemize}
 	\end{block}
 }}
@@ -328,46 +328,52 @@ $
 \vfill
 
 \pause
-
-	\begin{block}{\bf Methodology}
-		\begin{itemize}
-		\item Top results from Google Scholar using appropriate keywords
-		\item Literature review (follow the trail of citations)
-		\item Check results with colleagues in FM and QC
-		\end{itemize}
-	\end{block}
-
-\pause
-
-\vfill
+\centering
+\alert{(Translating results back Quantum Physics)}
 
 
-	\begin{alertblock}{\bf Methodology}
-		\begin{itemize}
-		\item Bias remains.. so I will discuss our own contributions separately.
-		\pause
-		\item Focus on advancing quantum, not on applying formal methods to quantum
-		\end{itemize}
-	\end{alertblock}
 
+%\pause
+%
+%	\begin{block}{\bf Methodology}
+%		\begin{itemize}
+%		\item Top results from Google Scholar using appropriate keywords
+%		\item Literature review (follow the trail of citations)
+%		\item Check results with colleagues in FM and QC
+%		\end{itemize}
+%	\end{block}
+%
+%\pause
+%
+%\vfill
+
+%
+%	\begin{alertblock}{\bf Methodology}
+%		\begin{itemize}
+%		\item Bias remains.. so I will discuss our own contributions separately.
+%		\pause
+%		\item Focus on advancing quantum, not on applying formal methods to quantum
+%		\end{itemize}
+%	\end{alertblock}
+%
 
 
 \end{frame}
 
 
-\begin{frame}[noframenumbering]{Overview}
-
-
-		\begin{enumerate}
-			\item[0.] Quantum Computing \\~\\
-			\item SAT-based methods
-			\item DD-based methods
-%			\item Diagrammatic languages
-\\
-~\\
-			\item Translating results back Quantum Physics
-		\end{enumerate}
-\end{frame}
+%\begin{frame}[noframenumbering]{Overview}
+%
+%
+%		\begin{enumerate}
+%			\item[0.] Quantum Computing \\~\\
+%			\item SAT-based methods
+%			\item DD-based methods
+%%			\item Diagrammatic languages
+%\\
+%~\\
+%			\item Translating results back Quantum Physics
+%		\end{enumerate}
+%\end{frame}
 
 
 %\begin{frame}{Quantum Circuit Simulation}
@@ -527,34 +533,6 @@ $
 \]
 
 
-\pause[4]
-%\centering
-%\alert{A quantum state is a pseudo-Boolean function:  $\set{0,1}^n\to \complex$}
-
-\centering
-\begin{tikzpicture}\footnotesize
-  \tikzset{venn circle/.style={circle,minimum width=2cm,fill=####1,opacity=0.4}}
-  \node [venn circle=white,minimum width=2.5cm,draw] (A) at (0,0.3) {};
-  \node  at (0,1.25) 			{Quantum states};
-
-%  \node [venn circle = Red!40!white, ellipse,minimum height=2.2cm, minimum width=3.6cm] (L) at (0,0.6) {};
-%  \node  at (0,1.5) 		{\limdd};
-  
-%  \node [venn circle = blue!70!white,text width=1.3cm,align=center,rotate=79,ellipse,minimum height=1.8cm, minimum width=2.5cm] (B) at (-.6,-.2) {};
-%  \node[text width=1.3cm,align=center]  at (-.9,-1.) {MPS};
-
-
-%  \node [venn circle = green!70!white,text width=1.3cm,align=center,rotate=119,ellipse,minimum height=1.8cm, minimum width=2.5cm] (B) at (.6,-.2) {};
-%  \node[text width=1.3cm,align=center]  at (.9,-1.) {RBM};
-
-
-
-%  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm] (B) at (-.5,.3) 	{\textcolor{white}{QMDD}};						
-
-  \node [venn circle = OliveGreen,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1] (C) at (.5,.2) {\textcolor{white}{Stabilizer states}};
-\end{tikzpicture}	
-
-\alert{Stabilizer circuits are non-universal \& classically simulatable, but crucial in error correction, etc.}
 
 \end{frame}
 
@@ -824,7 +802,7 @@ Simulation of quantum circuits: $G_k \cdots G_1 \cdot \vec v$
 
 
 
-\begin{refframe}{Classical vs Quantum Computation}
+\begin{refframe}{``Quantum \P'' and ``Quantum \NP''}
 %	\framesubtitle{The proof uses \textit{reductio ad absurdum}.}
 
 \vfill

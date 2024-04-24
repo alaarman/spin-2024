@@ -19,6 +19,20 @@
 
 \begin{refframe}{SAT-based Quantum Circuit Simulation}
 
+
+\vspace{-6em}
+
+\cols{
+\col{6cm}{}
+\col{4cm}{
+\begin{itemize}
+\item[\color{green}\cmark] Efficient SAT encoding
+\item[\color{red}\xmark] Non-universal
+\end{itemize}
+}}
+\pause
+
+
 \begin{block}{Berent et al. --- Towards a SAT Encoding for .. \cite{berent2022towards}}
 \begin{itemize}
 %\item Exponential-length encoding of universal circuits (requiring a simulator)
@@ -98,6 +112,19 @@ e/.default=black
 
 \begin{refframe}{SMT-based Quantum Circuit Simulation}
 
+\vspace{-3em}
+
+\cols{
+\col{6cm}{}
+\col{4cm}{
+\begin{itemize}
+\item[\color{red}\xmark] Intractable SMT theory
+\item[\color{green}\cmark] Universal
+\end{itemize}
+}}
+\pause
+
+
 \begin{block}{symQV: Automated Symbolic Verification of ... \cite{bauermarquart2023symqv}}
 \begin{itemize}
 \item<+-> Efficient SMT-encoding of \alert{universal} quantum circuits
@@ -126,7 +153,20 @@ $
 
 
 
-\begin{refframe}{\alert{Our Contribution:} \#SAT-based Quantum Circuit Simulation}
+\begin{refframe}{\#SAT-based Quantum Circuit Simulation}
+
+\vspace{-3em}
+
+\cols{
+\col{6cm}{}
+\col{4cm}{
+\begin{itemize}
+\item[\color{green}\cmark] Efficient \#SAT encoding
+\item[\color{green}\cmark] Universal
+\end{itemize}
+}}
+\pause
+
 
 \begin{block}{Simulating Quantum Circuits by Weighted Model Counting (WMC)\cite{mei2024simulating}}
 \begin{itemize}
@@ -174,7 +214,7 @@ $
 
 
 
-\begin{refframe}{\alert{Our Contribution:} \#SAT-based Quantum Circuit Simulation}
+\begin{refframe}{\#SAT-based Quantum Circuit Simulation}
 
 Simulating Quantum Circuits by Weighted Model Counting (WMC) \cite{mei2024simulating}
 
@@ -186,7 +226,7 @@ Simulating Quantum Circuits by Weighted Model Counting (WMC) \cite{mei2024simula
 
 
 %
-\begin{refframe}{\alert{Our Contribution:} \#SAT-based Quantum Circuit Simulation}
+\begin{refframe}{\#SAT-based Quantum Circuit Simulation}
 
 \begin{block}{Equivalence Checking ... by Weighted Model Counting (WMC)\cite{mei2024eq}}
 \begin{itemize}
@@ -200,9 +240,8 @@ Simulating Quantum Circuits by Weighted Model Counting (WMC) \cite{mei2024simula
 \begin{alertblock}<+->{Opportunities for both \#SAT-based approaches}
 \begin{itemize}
 \item<.-> Optimize (weighted) model counters for quantum problems (XOR constraints)
-\item<+-> Support of negative weights in approximate counters
-\item<+-> Support of negative weights in (approximate) samplers (weak simulation)
-%\item<+-> Complexity-theoretic questions about combining approximate counting +quantum
+\item<+-> Support of negative weights in approximate counters and samplers
+\item<+-> \alert{Synthesis for quantum circuits!}
 \end{itemize}
 \end{alertblock}
 
