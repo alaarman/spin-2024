@@ -2,3 +2,14 @@
 /ARinQC.pdf
 *.swp
 quantum-kc.pdf
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.nav
+*.out
+*.xml
+*.snm
+*.toc
+*.vrb
