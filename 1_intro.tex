@@ -1,17 +1,6 @@
 \section{Simulation}
 
 
-\newcommand\cols[1]{
-\begin{columnsonlytextwidth}
-	#1
-\end{columnsonlytextwidth}
-}
-\newcommand\col[2]{
-\begin{column}{#1}
-	#2
-\end{column}
-}
-
 
 
 \begin{refframe}{Quantum Computing}
@@ -96,12 +85,12 @@
 \begin{alertblock}<+->{Obstacles}
 		\begin{itemize}
 		\item What if the (error-corrected) quantum computer never materializes?
-\pause
 		\item What if it turns out that \BQP{} = \P?
 %		\item the device is too hard to build
 		\end{itemize}
 \end{alertblock}
 
+\pause
 
 
 \centering
@@ -162,6 +151,9 @@ $
 
 
 
+
+
+
 \begin{frame}{On the Road to Quantum Supremacy}
 
 
@@ -170,7 +162,7 @@ $
 		\begin{itemize}
 		\item Build an (error-corrected) quantum computer
 		\item<+-> Come up with a new quantum algorithm that shows that $\BQP \neq P$
-		\item<+-> \alert{Invent the tools to use current and future quantum computers}
+		\item<+-> \alert{Invent tools to use current and future quantum computers $\leftarrow$ (my modest focus)}
 %\pause
 %		\begin{itemize}
 %		\item \alert{Comparing data structures for representing quantum information}
@@ -563,11 +555,11 @@ node[below=.638cm of bnode] (cnode) {$c$}
 \[
 \scalebox{1}{
 \Qcircuit @C=1em @R=.2em @!R {
-\lstick{\ket{a}_a} & & \qw &  \ctrl{2} 	&\qw	& \qw      & \qw  \\
-\lstick{\ket{b}_b} & & \qw &  \ctrl{1}	&\qw 	& \qw      & \qw  \\
-\lstick{\ket{0}_x} &  & \qw & \targ  &\qw 	    & \ctrlo{1} & \qw \\  
-\lstick{\ket{c}_c} & & \qw &     \qw 	&\qw	& \ctrlo{1} & \qw  \\
-\lstick{\ket{1}_y} &  & \qw &     \qw   &\qw 	& \targ & \qw 
+\lstick{\ket{a}} & & \qw &  \ctrl{2} 	&\qw	& \qw      & \qw  \\
+\lstick{\ket{b}} & & \qw &  \ctrl{1}	&\qw 	& \qw      & \qw \\
+\lstick{x := \ket{0}} &  & \qw & \targ  &\qw 	    & \ctrlo{1} & \qw \\  
+\lstick{\ket{c}} & & \qw &     \qw 	&\qw	& \ctrlo{1} & \qw  \\
+\lstick{y := \ket{1}} &  & \qw &     \qw   &\qw 	& \targ & \qw 
 %\onslide<4->{ \gategroup{1}{3}{5}{5}{.7em}{--} }
 }}
 \]
@@ -844,10 +836,14 @@ e/.default=black
 	\draw[-Circle,shorten >= -.18cm] (SAT) -- (NP);
   
   
-	\node<3-> [e = blue!80!white, opacity=0.5, minimum height=1cm] (BQP) at (1,0) {~~~~~~~~~~~~~~~\BQP};
-  \node<4->[below right = of BQP,text width=3cm] (QCS) {\color{OliveGreen} Quantum circuit simulation};
-  \draw<4->[-Circle,shorten >= -.18cm] (QCS) -- (BQP);
-	
+\onslide<3->{
+	\node [e = blue!80!white, opacity=0.5, minimum height=1cm] (BQP) at (1,0) {~~~~~~~~~~~~~~~\BQP};
+}
+
+\onslide<4->{
+  \node[below right = of BQP,text width=3cm] (QCS) {\color{OliveGreen} Quantum circuit simulation};
+  \draw[-Circle,shorten >= -.18cm] (QCS) -- (BQP);
+}
 	
 	\node<2-> [e = blue!60!white, opacity=.7] at (.5,0) {~~~~~~\BPP};
 
@@ -877,6 +873,10 @@ e/.default=black
 	\item We can solve approximate problems using exact methods~\cite{wei2022accurate,hong2021approximate}.
 \end{itemize}
 	\end{block}
+	
+%\pause
+%\centering
+%\alert{(Actually \EQP and \QNP, which are gate-dependent.)}
 
 \end{refframe}
 

@@ -69,6 +69,20 @@
 \usepackage{tabto}
 
 
+
+\newcommand\cols[1]{
+\begin{columnsonlytextwidth}
+	#1
+\end{columnsonlytextwidth}
+}
+\newcommand\col[2]{
+\begin{column}{#1}
+	#2
+\end{column}
+}
+
+
+
 \newenvironment{refframe}[1]
     {
 	\begin{refsection}

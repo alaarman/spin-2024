@@ -20,7 +20,7 @@
 \begin{refframe}{SAT-based Quantum Circuit Simulation}
 
 
-\vspace{-6em}
+\vspace{-4em}
 
 \cols{
 \col{6cm}{}
@@ -30,20 +30,20 @@
 \item[\color{red}\xmark] Non-universal
 \end{itemize}
 }}
-\pause
 
 
 \begin{block}{Berent et al. --- Towards a SAT Encoding for .. \cite{berent2022towards}}
+\pause
 \begin{itemize}
 %\item Exponential-length encoding of universal circuits (requiring a simulator)
 %\pause
-\item Stabilizer circuit simulation  			\hfill (non-universal)
+\item Encode Clifford gates in logic, e.g., $H := x' \Leftrightarrow z \land z' \Leftrightarrow x$
 \item Stabilizer circuit equivalence checking	\hfill (non-universal)
 \end{itemize}
 \end{block}
 
 
-\onslide<2->{
+\onslide<3->{
 
 \tikzset{venn circle/.style={circle,minimum width=2cm,fill=####1,opacity=0.4}}
 \begin{tikzpicture}[
@@ -92,9 +92,10 @@ e/.default=black
   \draw[-Circle,shorten >= -.18cm] (CVP) -- (P);
 
 
-
-	\node<3->[below = of P.south,text width=4cm,xshift=.5cm,yshift=-.2cm] (Clifford) {\centering \color{blue} Stabilizer circuit simulation \cite{aaronson2008improved} /\\ Stabilizer circuit non-equivalence \cite{ours}};
-	\draw<3->[-Circle,shorten >= -.2cm] (Clifford) -- (P.south);
+\onslide<3->{
+	\node[below = of P.south,text width=4cm,xshift=.5cm,yshift=-.2cm] (Clifford) {\centering \color{blue} Stabilizer circuit simulation \cite{aaronson2008improved} /\\ Stabilizer circuit non-equivalence \cite{ours}};
+	\draw[-Circle,shorten >= -.2cm] (Clifford) -- (P.south);
+}
 
 \end{tikzpicture}	
 
@@ -122,10 +123,10 @@ e/.default=black
 \item[\color{green}\cmark] Universal
 \end{itemize}
 }}
-\pause
 
 
 \begin{block}{symQV: Automated Symbolic Verification of ... \cite{bauermarquart2023symqv}}
+\pause
 \begin{itemize}
 \item<+-> Efficient SMT-encoding of \alert{universal} quantum circuits
 \item<3-> Uses \alert{undecidable} theory: NLA with trigonometric expressions
@@ -155,7 +156,7 @@ $
 
 \begin{refframe}{\#SAT-based Quantum Circuit Simulation}
 
-\vspace{-3em}
+\vspace{-5em}
 
 \cols{
 \col{6cm}{}
@@ -170,41 +171,64 @@ $
 
 \begin{block}{Simulating Quantum Circuits by Weighted Model Counting (WMC)\cite{mei2024simulating}}
 \begin{itemize}
-\item<+-> Use density matrix instead of state vector
+\item<+-> Encode Clifford+$T$ in Boolean logic
 %\item<6-> Represent in Pauli basis, i.e., $\rho = \sum_j  \alpha_j P_j$  
 %\item<7-> \alert{Obviates the need for complex weights $\alpha_j$}
-\item<4-> \alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
-\item<5-> Negative weights: \alert{constructive and destructive interference}
+\item<5-> \alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
+\item<6-> Negative weights: \alert{constructive and destructive interference}
 \end{itemize}
 \end{block}
 
 \onslide<2->{
-\scalebox{1.}{
-\hspace{-2.5em}
-$
-	\rho  = \vec v \cdot \vec v^{\dagger}   = \onslide<2->{
-	\def\arraystretch{1.3}
-    \begin{bmatrix*}[c]
-     \tfrac{\sqrt i}{\sqrt 2} \\0 \\ 0\\ \vdots \\ 0 \\ \tfrac{1}{\sqrt 2}\\ 0  \\
-    \end{bmatrix*}\cdot 
-    \begin{bmatrix*}[c]
-     \tfrac{\sqrt i}{\sqrt 2}^* & 0 & 0&  \dots & 0 & \tfrac{1}{\sqrt 2}^* &  0  
-    \end{bmatrix*} =  \onslide<3->{ 
-    \begin{bmatrix*}[c]
-     \tfrac{1}{2} & 0 & 0&  \dots & 0 & \tfrac{\sqrt i}{2} &  0 \\ 
-     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
-     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
-     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
-     \vdots & \vdots & \vdots  & \dots & \vdots & \vdots &  \vdots \\ 
-     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
-     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
-     \tfrac{\sqrt i^*}{2}  & 0 & 0 & \dots & 0 & \tfrac{1}{2} &  0 \\ 
-     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
-    \end{bmatrix*} 
-    }}
-%    \right\}\text{ $2^n$ complex \alert{probability amplitudes}}
-$
+
+
+\[
+\scalebox{1}{
+\Qcircuit @C=1em @R=.2em @!R {
+\lstick{\ket{0}} & & \qw &  \gate{H} 	&\qw	& \gate{H}      & \qw  & \rstick{\bra{0}}  \\
+%\onslide<4->{ \gategroup{1}{3}{5}{5}{.7em}{--} }
+}}
+\]
+
+
+\[
+\onslide<3->{\text{Probability} = \text{ModelCount}(~~}	F_{\ket 0} \land F_H \land F_H \land F_{\bra 0} \onslide<3->{~~)\phantom{\text{Probability}}}
+\]
+
+
+\onslide<4->{
+\centering
+Copy variables, like in \concept{bounded model checking}:
+\[F_{\ket 0}(x^{(0)}) \land F_H(x^{(0)}, x^{(1)}) \land F_H(x^{(1)}, x^{(2)}) \land F_{\bra 0}(x^{(2)}) 
+\]
 }
+
+%\scalebox{1.}{
+%\hspace{-2.5em}
+%$
+%	\rho  = \vec v \cdot \vec v^{\dagger}   = \onslide<2->{
+%	\def\arraystretch{1.3}
+%    \begin{bmatrix*}[c]
+%     \tfrac{\sqrt i}{\sqrt 2} \\0 \\ 0\\ \vdots \\ 0 \\ \tfrac{1}{\sqrt 2}\\ 0  \\
+%    \end{bmatrix*}\cdot 
+%    \begin{bmatrix*}[c]
+%     \tfrac{\sqrt i}{\sqrt 2}^* & 0 & 0&  \dots & 0 & \tfrac{1}{\sqrt 2}^* &  0  
+%    \end{bmatrix*} =  \onslide<3->{ 
+%    \begin{bmatrix*}[c]
+%     \tfrac{1}{2} & 0 & 0&  \dots & 0 & \tfrac{\sqrt i}{2} &  0 \\ 
+%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
+%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
+%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
+%     \vdots & \vdots & \vdots  & \dots & \vdots & \vdots &  \vdots \\ 
+%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
+%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
+%     \tfrac{\sqrt i^*}{2}  & 0 & 0 & \dots & 0 & \tfrac{1}{2} &  0 \\ 
+%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
+%    \end{bmatrix*} 
+%    }}
+%%    \right\}\text{ $2^n$ complex \alert{probability amplitudes}}
+%$
+%}
 }
 
 

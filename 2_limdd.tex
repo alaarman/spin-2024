@@ -151,10 +151,8 @@
 
 
 
-
-
-
-\begin{refframe}[fragile]{Quantum State Representation with
+\begin{refsection}
+\begin{frame}[fragile]{Quantum State Representation with
 					\alert{Decision Diagrams}}
 
 %\vspace{-1em}
@@ -295,96 +293,97 @@ We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon 
 \centering
 \alert{(EVDD can be exponentially more succinct than MTBDD.)}
 }
-
+\vspace{-1em}
 
 \phantom{
 \cite{fujita1997multi,Vrudhula1996}
 }
 
+\vfill
+\printbibliography[section=\therefsection]
+\end{frame}
+\end{refsection}
+
+
+
+\begin{refframe}{Chronology of Decision Diagrams for Pseudo-Boolean Functions}
+	
+\vspace{-.8em}
+
+
+\begin{table}
+\centering\footnotesize
+\def\arraystretch{1.4}
+\begin{tabular}{|p{5.5cm}|c|c|}
+\hline
+\textbf{Decision diagrams for pseudo-Boolean functions}				& \textbf{Node merging strategy} &  \\\hline
+%Decision Tree	& (no merging) &  \\
+MTBDD~(1993)~\cite{clarke1993spectral}, \add~(1997)~\cite{bahar1997algebric}	& $\vec v = \vec w$  &  \\
+SLDD$_\times$~(2005)~\cite{wilson2005decision}	& $\vec v = \gamma\cdot \vec w$   & $\gamma \in \complex, \mathbb R, \dots$  \\
+EVBDD (1994)~\cite{lai1994evbdd}, SLDD$_+$ (2013)~\cite{fargier2013semiring}	& $\vec v = \vec w + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
+FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $\vec v = \gamma\cdot \vec w + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
+%\limdd~\cite{limdd}			& $\vec v = \gamma  P_1\otimes \dots \otimes P_n \cdot \vec w$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{-.8em}
+
+
+%\nocite{limdd2}
 
 \end{refframe}
 
 
 
 
-%\begin{refframe}{Chronology of Decision Diagrams for Pseudo-Boolean Functions}
-%	
-%\vspace{-.8em}
-%
-%
-%\begin{table}
-%\centering\footnotesize
-%\def\arraystretch{1.4}
-%\begin{tabular}{|p{5.5cm}|c|c|}
-%\hline
-%\textbf{Decision diagrams for pseudo-Boolean functions}				& \textbf{Node merging strategy} &  \\\hline
-%%Decision Tree	& (no merging) &  \\
-%MTBDD~(1993)~\cite{clarke1993spectral}, \add~(1997)~\cite{bahar1997algebric}	& $f = g$  &  \\
-%SLDD$_\times$~(2005)~\cite{wilson2005decision}	& $f = \gamma\cdot g$   & $\gamma \in \complex, \mathbb R, \dots$  \\
-%EVBDD (1994)~\cite{lai1994evbdd}, SLDD$_+$ (2013)~\cite{fargier2013semiring}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
-%FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%%\limdd~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
-%\hline
-%\end{tabular}
-%\end{table}
-%
-%\vspace{-.8em}
-%
-%
-%%\nocite{limdd2}
-%
-%\end{refframe}
+\begin{refframe}{Chronology of Decision Diagrams in Quantum Computing}
+	
+\vspace{-.8em}
+
+	
+\begin{table}
+\centering\footnotesize
+\def\arraystretch{1.5}
+\begin{tabular}{|p{4.5cm}|p{1.5cm}|c|c|}
+\hline
+\textbf{Quantum variant}	&
+\textbf{Original}				& \textbf{Node merging} &  \\\hline
+%Decision Tree	& (no merging) &  \\
+ QuiDD~(2003)~\cite{viamontes2003improving}					    &MTBDD (1993)  & $\vec v = \vec w$  &  \\
+ QMDD~(2006)~\cite{qmdd}, Tensor DD~(2020)~\cite{hong2022tensor}   & EVDD~(1994)  &$\vec v = \gamma\cdot \vec w$   & $\gamma \in \complex, \dots$  \\
+%SLDD$_+$~\cite{fargier2013semiring}, EVBDD~\cite{lai1994evbdd}	& $\vec v = \vec w + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
+%AADD~\cite{sanner2005AffineADDs}, FEVBDD~\cite{tafertshofer1997factored} 		& $\vec v = \gamma\cdot \vec w + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
+%&\limdd~(2021)~\cite{limdd}			& $\vec v = \gamma  P_1\otimes \dots \otimes P_n \cdot \vec w$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%%&QDD~(TODO)~\cite{TODO}					& () \\
+%&CFLOBDD~(2023)~\cite{TODO}				& (more like SDD)  \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{-.3em}
 
 
 
+\begin{block}<2->{Applications for Quantum Circuits:}
+\begin{itemize}
+	\item Simulation			\hfill   $G_k\cdots G_1 \cdot \vec v$
+	\item Equivalence checking	 \hfill $U \cdot V^\dagger = I$
+%	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
+\end{itemize}
+\end{block}
 
-%\begin{refframe}{Chronology of Decision Diagrams in Quantum Computing}
-%	
-%\vspace{-.8em}
-%
-%	
-%\begin{table}
-%\centering\footnotesize
-%\def\arraystretch{1.5}
-%\begin{tabular}{|p{4.5cm}|p{1.5cm}|c|c|}
-%\hline
-%\textbf{Quantum variant}	&
-%\textbf{Original}				& \textbf{Node merging} &  \\\hline
-%%Decision Tree	& (no merging) &  \\
-% QuiDD~(2003)~\cite{viamontes2003improving}					    &MTBDD (1993)  & $f = g$  &  \\
-% QMDD~(2006)~\cite{qmdd}, Tensor DD~(2020)~\cite{hong2022tensor}   & EVDD~(1994)  &$f = \gamma\cdot g$   & $\gamma \in \complex, \dots$  \\
-%%SLDD$_+$~\cite{fargier2013semiring}, EVBDD~\cite{lai1994evbdd}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
-%%AADD~\cite{sanner2005AffineADDs}, FEVBDD~\cite{tafertshofer1997factored} 		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%%&\limdd~(2021)~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
-%%%&QDD~(TODO)~\cite{TODO}					& () \\
-%%&CFLOBDD~(2023)~\cite{TODO}				& (more like SDD)  \\
-%\hline
-%\end{tabular}
-%\end{table}
-%
-%\vspace{-.3em}
-%
-%
-%
-%\begin{block}<2->{Applications for Quantum Circuits:}
-%\begin{itemize}
-%	\item Simulation			\hfill   $G_k\cdots G_1 \cdot \vec v$
-%	\item Equivalence checking	 \hfill $U \cdot V^\dagger = I$
-%%	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
-%\end{itemize}
-%\end{block}
-%
-%
-%\begin{alertblock}<3->{Exploiting Historical Parallels}
-%	\begin{itemize}
-%	\item<+-> Addition is hard for EVDD~\cite{fargier2013semiring}, hence Hadamard gates are hard for QMDD
-%	\item<+-> EVDD is prone to numerical instability (\cite{aadd}), and so is QMDD~\cite{niemann2020overcoming}
-%	\end{itemize}
-%\end{alertblock}
-%\vspace{-.8em}
-%
-%
-%\end{refframe}
+
+\begin{alertblock}<3->{Exploiting Historical Parallels}
+	\begin{itemize}
+	\item<+-> Addition is hard for EVDD~\cite{fargier2013semiring}, hence Hadamard gates are hard for QMDD
+	\item<+-> EVDD is prone to numerical instability (\cite{aadd}), and so is QMDD~\cite{niemann2020overcoming}
+	\end{itemize}
+\end{alertblock}
+\vspace{-.8em}
+
+
+\end{refframe}
 
 
 
@@ -813,6 +812,7 @@ EVDD
 \begin{itemize}
 	\item 	\limdd implemented in DDSIM~\cite{limdd2}.
 	\item 	Tested on QFT, after random Clifford  circuit
+	\item QFT is \BQP-complete
 \end{itemize}
 \end{exampleblock}
 
@@ -849,11 +849,11 @@ EVDD
 %%\hline
 %%\textbf{Decision diagrams for pseudo-Boolean functions}				& \textbf{Node merging strategy} &  \\\hline
 %%%Decision Tree	& (no merging) &  \\
-%%MTBDD~(1993)~\cite{clarke1993spectral}, \add~(1997)~\cite{bahar1997algebric}	& $f = g$  &  \\
-%%SLDD$_\times$~(2005)~\cite{wilson2005decision}	& $f = \gamma\cdot g$   & $\gamma \in \complex, \mathbb R, \dots$  \\
-%%EVBDD (1994)~\cite{lai1994evbdd}, SLDD$_+$ (2013)~\cite{fargier2013semiring}	& $f = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
-%%FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{sanner2005AffineADDs}		& $f = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
-%%%\limdd~\cite{limdd}			& $f = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
+%%MTBDD~(1993)~\cite{clarke1993spectral}, \add~(1997)~\cite{bahar1997algebric}	& $\vec v = g$  &  \\
+%%SLDD$_\times$~(2005)~\cite{wilson2005decision}	& $\vec v = \gamma\cdot g$   & $\gamma \in \complex, \mathbb R, \dots$  \\
+%%EVBDD (1994)~\cite{lai1994evbdd}, SLDD$_+$ (2013)~\cite{fargier2013semiring}	& $\vec v = g + \alpha$ & $\alpha \in \complex, \mathbb R, \dots$  \\
+%%FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{sanner2005AffineADDs}		& $\vec v = \gamma\cdot g + \alpha$ & $\alpha,\gamma \in \complex, \mathbb R, \dots$ \\
+%%%\limdd~\cite{limdd}			& $\vec v = \gamma  P_1\otimes \dots \otimes P_n \cdot g$ & $P_i \in \gen{\id, X,Y,Z}$   \\
 %%\hline
 %%\end{tabular}
 %%\end{table}
