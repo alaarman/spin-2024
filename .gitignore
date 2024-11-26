@@ -2,6 +2,7 @@
 /ARinQC.pdf
 *.swp
 quantum-kc.pdf
+*.gz
 *.aux
 *.bbl
 *.bcf
