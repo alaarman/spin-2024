@@ -11,7 +11,7 @@
 \vfill
 
 \centering
-\alert{(A very incomplete overview)}
+%\alert{(A very incomplete overview)}
 
 \end{frame}
 
@@ -38,7 +38,7 @@
 %\item Exponential-length encoding of universal circuits (requiring a simulator)
 %\pause
 \item Encode Clifford gates in logic, e.g., $H := x' \Leftrightarrow z \land z' \Leftrightarrow x$
-\item Stabilizer circuit equivalence checking	\hfill (non-universal)
+\item Clifford circuit equivalence checking	\hfill (non-universal)
 \end{itemize}
 \end{block}
 
@@ -134,9 +134,11 @@ e/.default=black
 \end{itemize}
 \end{block}
 
+
+
 \onslide<2->{
 \centering
-\scalebox{1.3}{
+\scalebox{.8}{
 $
 	\vec v   =
 	\def\arraystretch{1.3}
@@ -148,94 +150,392 @@ $
 $
 }
 }
+\onslide<4->{
+\begin{block}{A theory of cartesian arrays \cite{chen2023theory}}	
+\end{block}
+}
 	
 \end{refframe}
 
 
 
 
-\begin{refframe}{\#SAT-based Quantum Circuit Simulation}
 
-\vspace{-5em}
+
+\begin{frame}{Weighted Model Counting (\#SAT)}
+
+
+Model counting (\#SAT) is the counting version ($\#\P$) of satisfiability (SAT).
+
+\pause
+
+~\\
+~\\
+%
+%\begin{definition}[Weighted Model Counting]
+%Given a 
+%	\alert{CNF formula} $F(V) \colon \mathbb B^n \to \mathbb B$ and a 
+%	\alert{weight function} $W\colon \set{ \bar v, v \mid v\in V} \to \mathbb{C}$, 
+%%For a propositional formula $F$ over variables in $V$ and weight function $W$, 
+%we define \concept{weighted model counting} as follows.
+%\[
+%MC_W(F) \defn   \sum_{\alpha \in  \bool^V} F(\alpha)\cdot W(\alpha)\text{, where }  W(\alpha) = \prod_{v\in V} W(\alpha(v)).
+%\]
+%\end{definition}	
+%\pause
+
+%\begin{example}{}
+%  Given the formula $F = (a \vee b) \land  c$ over $V=\{a,b, v\}$ with weights $W(a) = \frac13, W(\bar a) = \frac23$ ($b, c$ always have weight 1), the model count is:
+%  
+%
+%\hfill 
+%  \begin{tabular}{|l|l|}
+%  \hline
+%  	$\bar a  b  c$ & $\nicefrac 23$ \\
+%  	 $a \bar b  c$ & $\nicefrac 13$ \\
+%  	$a b  c$ & $\nicefrac 13$\\
+%  \hline
+%  \end{tabular}  
+%  \hfill 
+%  $\nicefrac 23 + \nicefrac 13 + \nicefrac 13= \nicefrac 43$
+%\hfill ~
+%
+%\end{example}
+
+\begin{example}{Weighted Model Counting}
+  Formula: $F = a \vee b$\\\vspace{.5em}
+  Weights: $W(a) = \frac13,$\\
+  \phantom{Weights: }$W(\bar a) = \frac23$, \\
+  \phantom{Weights: }$W(b)=W(\bar b) = 1$
+  
+  \vspace{.5em}
+  ~\\
+
+\begin{center}
+  \begin{tabular}{|l|l|}
+  \hline
+  	$\bar a \bar b $ & --- \\
+  	$\bar a  b $ & $\nicefrac 23$ \\
+  	$a \bar b $ & $\nicefrac 13$ \\
+  	$a b$ & $\nicefrac 13$\\
+  \hline
+  \end{tabular} 
+\end{center}
+
+\pause
+
+  \vspace{.5em}
+  ~\\
+\[
+\text{ModelCount}_W(F) = \frac 43 \pause = \sum_{\vec x\in \set{0,1}^n} \overbrace{F(\vec x)}^{\text{satisfiable 0/1}}  \cdot \overbrace{\prod_{x_i \in \vec x} W(x_i)}^{\text{weight of assignment}}
+\]
+
+\end{example}
+
+
+\end{frame}
+
+
+
+
+
+%\begin{frame}{Encoding States and Circuits}
+%
+%   \[
+%     \begin{array}{c}  
+%       \Qcircuit @C=1em @R=.7em {
+%         \lstick{\ket{0}_q} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \gate{H} &\qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \gate{H} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> &\qw \\
+%         & \ket{\varphi_0} & & \ket{\varphi_1} & & \ket{\varphi_2} & &
+%       }
+%     \end{array}		
+%   \]
+%
+%  \begin{align*}
+%  \ket{\phi_0} &= \ket 0  &\equiv \overline  q\\
+%  \ket{\phi_1} &= \frac1{\sqrt 2}(\ket 0 + \ket 1)  &\equiv  h  \\
+%  \ket{\phi_2} &= \frac1{\sqrt 2}(\frac1{\sqrt 2}(\ket 0 \underbrace{+ \ket 1}_{}) + \frac1{\sqrt 2}(\ket 0 \underbrace{- \ket 1}_{})) &= \ket 0
+%  \end{align*}
+%
+%
+%\pause
+%
+%
+%
+%
+%~\\
+%
+%\centering
+%$\bar q_0  ~~\land~~  F_H(q_0,q_1, h) ~~\land~~ F_{H}(q_1,q_2,h')$
+%\pause
+%
+%
+%~\\
+%~\\
+%Satisfying assignments at each time step:
+%\[
+%\set{\bar x_0} \quad\quad\quad\quad  \set{~ \bar x_1 h,~~  x_1h ~} 
+%				\quad\quad\quad\quad  \set{~ {\color{gray}\bar x_1h }\, \bar x_2 h',~~  {\color{gray} x_1h}\, \bar x_2 h',~~ {\color{gray}\bar x_1 h}\,  x_2h',~~  {\color{gray} x_1 h}\,  x_2h'  ~} 
+%\]
+%
+%\end{frame}
+
+
+
+\begin{frame}{Encoding quantum states in WMC}
+	\begin{align*}
+	  \onslide<1->{&\ket{0} &&\{\{x \leftarrow 0\}\} &&\bar{x} \\
+	  &\ket{1} &&\{\{x \leftarrow 1\}\} &&x\\
+	  &\ket{+} = \tfrac{1}{\sqrt{2}}(\ket{0} + \ket{1}) &&\left\{\{x \leftarrow 0, h \leftarrow 1\}, \{x \leftarrow 1, h \leftarrow 1\}\right\} &&h \quad\alert{W(h) = \nicefrac{1}{\sqrt{2}}} \\
+	  & && &&\alert{\text{leave } x \text{ unconstrained.}} \\}
+	  \\
+	  \onslide<2->{&\tfrac{1}{\sqrt{2}}(\ket{00}-\ket{11}) &&\{\{x \leftarrow 0, y \leftarrow 0, h \leftarrow 1\}, &&\bar{x}\bar{y}h \vee xy\bar{h} \\
+	  & &&\{x \leftarrow 1, y \leftarrow 1, h \leftarrow 1\}\} &&\alert{W(\bar{h}) = -\nicefrac{1}{\sqrt{2}}} \\}
+	\end{align*}
+  \end{frame}
+
+\begin{frame}{Encoding Quantum Gates}
+	\begin{itemize}
+		\item Hadamard gate
+		
+		\begin{minipage}{0.48\linewidth}
+				\begin{align*}
+					\onslide<1->{{\color{red}H\cdot\ket{0}} &{\color{red}= \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})} \\}
+					\onslide<1->{{\color{blue}H\cdot\ket{1}} &{\color{blue}= \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})} \\}
+				\end{align*}
+		\end{minipage}
+		\begin{minipage}{0.48\linewidth}
+			\begin{tikzpicture}[
+				scale=0.3,
+				every path/.style={>=latex},
+				every node/.style={},
+				inner sep=0pt,
+				minimum size=14pt,
+				line width=1pt,
+				node distance=.5cm,
+				thick,
+				font=\footnotesize
+				]
+			
+				\node[draw, circle, minimum size=0.9cm] (0)   {$\ket{0}$};
+				\node[draw,circle, right =1cm of 0, xshift=0cm, minimum size=0.9cm] (1) {$\ket{1}$};    
+				% \node[below = -.1cm of 0, xshift=1cm, minimum size=0.9cm] {$H$ gate};
+			
+			
+			\onslide<1->{\draw[black, \bigarrowhead, loop left, color=red] (0) edge node[yshift=0.2cm] {$\frac{1}{\sqrt{2}}$} (0);}
+			\onslide<1->{\draw[black, \bigarrowhead, bend left=20, color=red] (0) edge node[yshift=0.2cm] {$\frac{1}{\sqrt{2}}$} (1);}
+			\onslide<1->{\draw[black, \bigarrowhead, loop right, color=blue] (1) edge node[yshift=0.2cm] {$-\frac{1}{\sqrt{2}}$} (1);}
+			\onslide<1->{\draw[black, \bigarrowhead, bend left=20, color=blue] (1) edge node[yshift=-0.2cm] {$\frac{1}{\sqrt{2}}$} (0);}
+			\end{tikzpicture}
+		\end{minipage}
+		\onslide<1->{\item Matrix form:
+		\[
+			H = 
+			\begin{bmatrix*}[r]
+			\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+			\frac{1}{\sqrt{2}} & \alert-\frac{1}{\sqrt{2}}
+			\end{bmatrix*}
+		\]}
+	\end{itemize}
+	\onslide<2->{\begin{block}{Gate encoding}
+		$F_{H}({\color{red}x}, {\color{blue}x'},h) ~~\defn~~ \bar h \Leftrightarrow {\color{blue}x'}{\color{red}x}$  \quad \hfill\alert{(leave {\color{blue}$x'$} unconstrained)} 
+		\\
+		\alert{$W(h) = \nicefrac{1}{\sqrt{2}}$,}\\ \alert{$W(\bar h) = -\nicefrac{1}{\sqrt{2}}$}
+	\end{block}}
+\end{frame}
+
+
+
+
+
+
+%\begin{refframe}{\#SAT-based Quantum Circuit Simulation}
+%
+%\vspace{-3em}
+%
+%\cols{
+%\col{6cm}{}
+%\col{4cm}{
+%\begin{itemize}
+%\item[\color{green}\cmark] Efficient \#SAT encoding
+%\item[\color{green}\cmark] Universal
+%\end{itemize}
+%}}
+%\pause
+%
+%
+%\begin{block}{Simulating Quantum Circuits by Weighted Model Counting (WMC)\cite{mei2024simulating}}
+%\begin{itemize}
+%\item<+-> Encode Clifford+$T$ in Boolean logic
+%%\item<6-> Represent in Pauli basis, i.e., $\rho = \sum_j  \alpha_j P_j$  
+%%\item<7-> \alert{Obviates the need for complex weights $\alpha_j$}
+%\item<5-> \alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
+%\item<6-> Negative weights: \alert{constructive and destructive interference}
+%\end{itemize}
+%\end{block}
+%
+%\onslide<2->{
+%
+%
+%\[
+%\scalebox{1}{
+%\Qcircuit @C=1em @R=.2em @!R {
+%\lstick{\ket{0}} & & \qw &  \gate{H} 	&\qw	& \gate{H}      & \qw  & \rstick{\bra{0}}  \\
+%%\onslide<4->{ \gategroup{1}{3}{5}{5}{.7em}{--} }
+%}}
+%\]
+%
+%
+%\[
+%\onslide<3->{\text{Probability} = \text{ModelCount}(~~}	F_{\ket 0} \land F_H \land F_H \land F_{\bra 0} \onslide<3->{~~)\phantom{\text{Probability}}}
+%\]
+%
+%
+%\onslide<4->{
+%\centering
+%Copy variables, like in \concept{bounded model checking}:
+%\[F_{\ket 0}(x^{(0)}) \land F_H(x^{(0)}, x^{(1)}) \land F_H(x^{(1)}, x^{(2)}) \land F_{\bra 0}(x^{(2)}) 
+%\]
+%}
+%
+%%\scalebox{1.}{
+%%\hspace{-2.5em}
+%%$
+%%	\rho  = \vec v \cdot \vec v^{\dagger}   = \onslide<2->{
+%%	\def\arraystretch{1.3}
+%%    \begin{bmatrix*}[c]
+%%     \tfrac{\sqrt i}{\sqrt 2} \\0 \\ 0\\ \vdots \\ 0 \\ \tfrac{1}{\sqrt 2}\\ 0  \\
+%%    \end{bmatrix*}\cdot 
+%%    \begin{bmatrix*}[c]
+%%     \tfrac{\sqrt i}{\sqrt 2}^* & 0 & 0&  \dots & 0 & \tfrac{1}{\sqrt 2}^* &  0  
+%%    \end{bmatrix*} =  \onslide<3->{ 
+%%    \begin{bmatrix*}[c]
+%%     \tfrac{1}{2} & 0 & 0&  \dots & 0 & \tfrac{\sqrt i}{2} &  0 \\ 
+%%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
+%%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
+%%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
+%%     \vdots & \vdots & \vdots  & \dots & \vdots & \vdots &  \vdots \\ 
+%%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
+%%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
+%%     \tfrac{\sqrt i^*}{2}  & 0 & 0 & \dots & 0 & \tfrac{1}{2} &  0 \\ 
+%%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
+%%    \end{bmatrix*} 
+%%    }}
+%%%    \right\}\text{ $2^n$ complex \alert{probability amplitudes}}
+%%$
+%%}
+%}
+%
+%
+%%for $P_j \in\set{I, X, Y, Z}$
+%\end{refframe}
+
+
+	\begin{refframe}{Encoding quantum circuit simulation}
+	
+\vspace{-2em}
 
 \cols{
 \col{6cm}{}
 \col{4cm}{
 \begin{itemize}
-\item[\color{green}\cmark] Efficient \#SAT encoding
+\item[\color{green}\cmark] Scalable model counters
 \item[\color{green}\cmark] Universal
 \end{itemize}
 }}
+
+\vfill
+	  \vspace{-1em}
+	  \[
+		\begin{array}{c}  
+		  \Qcircuit @C=1em @R=.7em {
+			\lstick{\ket{0}_{\alert x}} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \gate{H ~\alert{(h)}} &\qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \ctrl{1} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> &\qw  
+			& \rstick{\bra{1}}
+			\\
+			\lstick{\ket{0}_{\alert y}} & \qw & \qw & \qw & \targ & \qw &\qw
+			& \rstick{\bra{1}} \\
+			& \vec v_0 & & \vec v_1 & & \vec v_2 &  & 
+		  }
+		\end{array}		
+	  \]
+	
+	\centering
+	\alert{where $x$, $y$, $h$ and $t$ are Boolean variables. We copy $x,y$ for every time step:}
+	  \pause
+	  \vspace*{1em}
+	  \[
+		F = %\underbrace{
+		\underbrace{\underbrace{\underbrace{\bar x_0 \bar y_0}_{\vec v_0} ~\land~  F_H(x_0,x_1, h)~~\alert{\land y_1 \Leftrightarrow y_0}}_{\vec v_1} ~~\land~~ F_{CNOT}(x_1,y_1,x_2,y_2)}_{\vec v_2}  
+		~~\land~~ x_2 y_2
+%		 F_{T}(y_2,y_3,t)\alert{~~\land x_3 \Leftrightarrow x_2}}_{\vec v_3}
+	  \]
+	  \pause
+
+\vspace{-2em}
+
+	  \[
+		\text{ModelCount}_W(F) = \frac{1}{\sqrt{2}}
+%		\{\cdots{\color{gray} h}\cdots\land\bar x_3 \bar y_3 \bar t, ~~\cdots{\color{gray} h}\cdots\land x_3 y_3 t\} \equiv \vec v_3
+	  \]
+	  
 \pause
-
-
-\begin{block}{Simulating Quantum Circuits by Weighted Model Counting (WMC)\cite{mei2024simulating}}
+ 
+\begin{alertblock}{Contributions}
 \begin{itemize}
-\item<+-> Encode Clifford+$T$ in Boolean logic
-%\item<6-> Represent in Pauli basis, i.e., $\rho = \sum_j  \alpha_j P_j$  
-%\item<7-> \alert{Obviates the need for complex weights $\alpha_j$}
-\item<5-> \alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
-\item<6-> Negative weights: \alert{constructive and destructive interference}
+\item The encoding is linear in the number of qubits and gates:  $\mathcal O(n +m)$~\cite{mei2024simulating}
+\item We can use the same principle for equivalence checking~\cite{mei2024eq}
+%\item We have a different encoding that only requires negative weights (also for Clifford + $T$ gate set)
+%\\\hfill (Pauli basis is generated by only $2n$ elements)
 \end{itemize}
-\end{block}
-
-\onslide<2->{
-
-
-\[
-\scalebox{1}{
-\Qcircuit @C=1em @R=.2em @!R {
-\lstick{\ket{0}} & & \qw &  \gate{H} 	&\qw	& \gate{H}      & \qw  & \rstick{\bra{0}}  \\
-%\onslide<4->{ \gategroup{1}{3}{5}{5}{.7em}{--} }
-}}
-\]
+\end{alertblock}
+	\end{refframe}
 
 
-\[
-\onslide<3->{\text{Probability} = \text{ModelCount}(~~}	F_{\ket 0} \land F_H \land F_H \land F_{\bra 0} \onslide<3->{~~)\phantom{\text{Probability}}}
-\]
+%\begin{refframe}{\#SAT-based Quantum Circuit Equivalence}
+%
+%\begin{block}{Equivalence Checking ... by Weighted Model Counting (WMC)\cite{mei2024eq}}
+%\begin{itemize}
+%\item<+-> Use the same $\mathcal O(n +m)$ WMC encoding
+%\item<+-> Combine with equivalence checking theorem from~\cite{ours} 
+%%\\\hfill (Pauli basis is generated by only $2n$ elements)
+%\end{itemize}
+%\end{block}
+%
+%
+%\begin{alertblock}<+->{Opportunities for both \#SAT-based approaches}
+%\begin{itemize}
+%\item<.-> Optimize (weighted) model counters for quantum problems (XOR constraints)
+%\item<+-> Support of negative weights in approximate counters and samplers
+%\item<+-> \alert{Synthesis for quantum circuits!}
+%\end{itemize}
+%\end{alertblock}
+%
+%\end{refframe}
 
 
-\onslide<4->{
-\centering
-Copy variables, like in \concept{bounded model checking}:
-\[F_{\ket 0}(x^{(0)}) \land F_H(x^{(0)}, x^{(1)}) \land F_H(x^{(1)}, x^{(2)}) \land F_{\bra 0}(x^{(2)}) 
-\]
-}
+\begin{refframe}{Quokka\#}
 
-%\scalebox{1.}{
-%\hspace{-2.5em}
-%$
-%	\rho  = \vec v \cdot \vec v^{\dagger}   = \onslide<2->{
-%	\def\arraystretch{1.3}
-%    \begin{bmatrix*}[c]
-%     \tfrac{\sqrt i}{\sqrt 2} \\0 \\ 0\\ \vdots \\ 0 \\ \tfrac{1}{\sqrt 2}\\ 0  \\
-%    \end{bmatrix*}\cdot 
-%    \begin{bmatrix*}[c]
-%     \tfrac{\sqrt i}{\sqrt 2}^* & 0 & 0&  \dots & 0 & \tfrac{1}{\sqrt 2}^* &  0  
-%    \end{bmatrix*} =  \onslide<3->{ 
-%    \begin{bmatrix*}[c]
-%     \tfrac{1}{2} & 0 & 0&  \dots & 0 & \tfrac{\sqrt i}{2} &  0 \\ 
-%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
-%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
-%     0 & 0 & 0& \dots & 0 & 0 &  0 \\ 
-%     \vdots & \vdots & \vdots  & \dots & \vdots & \vdots &  \vdots \\ 
-%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
-%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
-%     \tfrac{\sqrt i^*}{2}  & 0 & 0 & \dots & 0 & \tfrac{1}{2} &  0 \\ 
-%     0 & 0 & 0 & \dots & 0 & 0 &  0 \\ 
-%    \end{bmatrix*} 
-%    }}
-%%    \right\}\text{ $2^n$ complex \alert{probability amplitudes}}
-%$
-%}
-}
+	\centering
 
 
-%for $P_j \in\set{I, X, Y, Z}$
+\vspace{-4em}
+	\includegraphics[width=4cm]{quokka}
+	
+	
+\begin{alertblock}{The Quokka\# Tool}
+	\begin{itemize}
+		\item
+		\alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
+		\item Simulation and equivalence checking
+	\end{itemize}
+	
+	
+\end{alertblock}
+
+	
+	\url{https://github.com/System-Verification-Lab/Quokka-Sharp}
+	
+	
 \end{refframe}
-
-
 
 
 \begin{refframe}{\#SAT-based Quantum Circuit Simulation}
@@ -249,28 +549,8 @@ Simulating Quantum Circuits by Weighted Model Counting (WMC) \cite{mei2024simula
 
 
 
+
 %
-\begin{refframe}{\#SAT-based Quantum Circuit Simulation}
-
-\begin{block}{Equivalence Checking ... by Weighted Model Counting (WMC)\cite{mei2024eq}}
-\begin{itemize}
-\item<+-> Use the same $\mathcal O(n +m)$ WMC encoding
-\item<+-> Combine with equivalence checking theorem from~\cite{ours} 
-%\\\hfill (Pauli basis is generated by only $2n$ elements)
-\end{itemize}
-\end{block}
-
-
-\begin{alertblock}<+->{Opportunities for both \#SAT-based approaches}
-\begin{itemize}
-\item<.-> Optimize (weighted) model counters for quantum problems (XOR constraints)
-\item<+-> Support of negative weights in approximate counters and samplers
-\item<+-> \alert{Synthesis for quantum circuits!}
-\end{itemize}
-\end{alertblock}
-
-\end{refframe}
-
 
 
 

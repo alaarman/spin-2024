@@ -151,17 +151,248 @@
 
 
 
-\begin{refsection}
+%\begin{refsection}
+%\begin{frame}[fragile]{Quantum State Representation with
+%					\alert{Decision Diagrams}}
+%
+%%\vspace{-1em}
+%We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon \set{0,1}^n \to \complex$, or alternatively as an exponentially-sized complex vector:
+%
+%~\\
+%\pause
+%
+%\centering
+%
+%\tikzset{every picture/.style={->,thick}}
+%~\hspace{-1cm}
+%\begin{tikzpicture}[
+%    scale=0.3,
+%    every path/.style={>=latex},
+%    every node/.style={},
+%    inner sep=0pt,
+%    minimum size=0.3cm,
+%    line width=1pt,
+%    node distance=1cm,
+%    thick,
+%    font=\footnotesize
+%    ]
+%
+%
+%    % nodes
+%    \node[draw,circle] (a1) {};
+%    \node[draw,circle, below = .45cm of a1, xshift=-.9cm] (a2) {};
+%    \node[draw,circle, below = .45cm of a1, xshift= .9cm] (a3) {};
+%%    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
+%    \node[draw,circle, below = .45cm of a2, xshift= .3cm] (a42) {};
+%    \node[draw,circle, below = .45cm of a3, xshift=-.3cm] (a43) {};
+%    \node[draw,circle, below = .45cm of a3, xshift= .3cm] (a44) {};
+%
+%%\only<-2,5->{
+%    \node[leaf, below= .45cm of a42, xshift= -.13cm, inner sep=0pt] (w3) {$2$};
+%    \node[leaf, right= .32cm of w3,inner sep=0pt] (w5) {$1$};
+%    \node[leaf, right= .32cm of w5,inner sep=0pt] (w7) {$-2$};
+%
+%    \draw[e0= 0] (a42) edge   (w3);
+%    \draw[e0= 0] (a43) edge   (w5);
+%    \draw[e0= 0] (a44) edge  (w7);
+%%}
+%
+%%\only<3-4>{
+%%    \node[leaf, below= .45cm of a42, xshift=.6cm] (w1) {$1$};
+%%    
+%%    \draw[e0= 0] (a42) edge  node[above right,pos=.3] {$2$} (w1);
+%%    \draw[e0= 0] (a43) edge  node[above left,pos=.3] {} (w1);
+%%    \draw[e0=-20] (a44) edge  node[pos=.4,below right] {$-2$} (w1);
+%%}
+%
+%
+%    % edges
+%    \draw[<-] (a1) --++(90:2cm) node[right,pos=.7] {};
+%    \draw[e0 = 0] (a1) edge  node[] {} (a2);
+%    \draw[e1 = 0] (a1) edge  node[] {} (a3);
+%
+%    \draw[e0=  0] (a2) edge  node[] {} (a43);
+%    \draw[e1=  0] (a2) edge  node[] {} (a42);
+%    \draw[e0=  0] (a3) edge  node[] {} (a43);
+%    \draw[e1=  0] (a3) edge  node[] {} (a44);
+%
+%  
+%\node[left = 1.3cm of a1.south,yshift=-1cm] (vec) {
+%    \begin{minipage}{1.7cm}\footnotesize
+%    $
+%%\frac 12\cdot
+%\def\arraystretch{1.3}
+%    \begin{bmatrix*}[r]
+%			 \only<4->{\color{red} 1}\only<-3>{1}\\\only<4->{\color{red} 0}\only<-3>{0}\\
+%    		 \only<7->{\color{purple} 2}\only<-6>{2}\\\only<7->{\color{purple} 0}\only<-6>{0}\\
+%    		\only<4->{\color{green} 1}\only<-3>{1}\\\only<4->{\color{green} 0}\only<-3>{0}\\ 
+%    		\only<7->{\color{blue}-2}\only<-6>{-2}\\
+%    		\only<7->{\color{blue} 0}\only<-6>{0} \\
+%    \end{bmatrix*}$
+%    \end{minipage}
+%};
+%
+%
+% \node[below= 2.5cm of a1,text width= 2.99cm]  (add)   {\centering Multi-Terminal DD (MTBDD)};
+%
+%\pause[3]
+%
+%%    \node[draw,circle, below = .45cm of a2, xshift=-.3cm,fill=red] (a41) {};
+%    \node[draw,circle, below = .45cm of a2, xshift= .3cm,fill=purple] (a42) {};
+%    \node[draw,circle, below = .45cm of a3, xshift=-.3cm,fill=green] (a43) {};
+%    \node[draw,circle, below = .45cm of a3, xshift= .3cm,fill=blue] (a44) {};
+%
+%\only<3>{
+%\node[right= of a3, text width = 3cm] {
+%\color{green}$f_{00} = f_{10} = \begin{bmatrix*}[c]
+%    				   1, \\ 0\phantom{,}\\
+%    				\end{bmatrix*}$\\\vspace{4mm}
+%\color{purple}\scriptsize$f_{01}  =\phantom-2\cdot  f_{00}$\\\vspace{4mm}
+%%\color{green}\scriptsize$ f_{10} = \phantom-2\cdot  f_{00}$\\\vspace{4mm}
+%\color{blue}\scriptsize$f_{11}=-2 \cdot f_{00}$
+%};
+%}
+%
+%
+%\pause
+%
+%
+%    % nodes
+%    \node[draw,circle, right= 2.8cm of a1] (a1) {};
+%    \node[draw,circle, below = .45cm of a1, xshift=-.7cm] (a2) {};
+%    \node[draw,circle, below = .45cm of a1, xshift= .7cm] (a3) {};
+%    \node[draw,circle, below = .45cm of a2, xshift= .7cm,shade, shading=axis, left color=purple,  middle color=purple, right color=blue, shading angle=90] (a41) {};
+%    \node[leaf, below= .45cm of a41] (w1) {$1$};
+%
+%    
+%    % edges
+%    \draw[<-] (a1) --++(90:2cm) node[right,pos=.7] {};
+%    \draw[e0 = 0] (a1) edge  node[] {} (a2);
+%    \draw[e1 = 0] (a1) edge  node[] {} (a3);
+%
+%    \draw[e0= 20] (a2) edge  node[left,pos=.4] {} (a41);
+%    \draw[e1= 20] (a2) edge  node[above right,pos=.3] {~$2$} (a41);
+%    \draw[e0= 20] (a3) edge  node[left,pos=.] {} (a41);
+%    \draw[e1= 20] (a3) edge  node[right,pos=.4] {$-2$} (a41);
+%    \draw[e0=0] (a41) edge  node[left] {} (w1);
+%%    \draw[e1=25] (a41) edge  node[lbl,right] {$0$} (w1);
+%
+%\node[below= 2.5cm of a1,text width= 2.6cm] (aadd) {\centering Edge-Valued DD (EVDD)};
+%
+%
+%\pause
+%
+%\node[below= .3cm of add, xshift=-2cm] {\alert{\textbf{Merge nodes $v, w$: }}};
+%\node[below= .3cm of add] {\alert{$\vec v = \vec w$ }};
+%\node[below= .3cm of aadd, xshift=.cm,text width = 4cm,align=center] {\alert{$\vec v = \gamma \cdot \vec w$\\ \vspace{3mm}(equivalent up to a complex factor $\lambda$)}};
+%
+%    \onslide<1->
+%\end{tikzpicture}
+%
+%\onslide<+->{
+%\centering
+%\alert{(EVDD can be exponentially more succinct than MTBDD.)}
+%}
+%\vspace{-1em}
+%
+%\phantom{
+%\cite{fujita1997multi,Vrudhula1996}
+%}
+%
+%\vfill
+%\printbibliography[section=\therefsection]
+%\end{frame}
+%\end{refsection}
+
+
+
+
 \begin{frame}[fragile]{Quantum State Representation with
 					\alert{Decision Diagrams}}
 
-%\vspace{-1em}
-We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon \set{0,1}^n \to \complex$, or alternatively as an exponentially-sized complex vector:
+\vspace{-1em}
+We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon \set{0,1}^n \to \complex$, or
 
-~\\
-\pause
+\begin{block}{`Shannon decomposition' in quantum}
 
 \centering
+
+\vspace{.5em}
+
+\scalebox{1.2}{
+$\vec v = \ket 0 \otimes \hspace{-1em} \underbrace{\vec v_0}_{\text{$n-1$ qubits}} + ~~~~
+			 \ket 1  \otimes \hspace{-1em} \underbrace{\vec v_1}_{\text{$n-1$ qubits}}$
+}
+
+\vspace{.5em}
+
+\scalebox{1.2}{
+~~~~~~~~~~~~~~~~~$\vec v = \alpha_1 \ket{00\dots00}  + \dots  + \alpha_{2^n} \ket{11\dots11} $
+
+}\hfill (recursively)
+
+\vspace{.5em}
+\end{block}
+
+%\begin{block}{View quantum state as pseudo Boolean function}
+%
+%A state is an amplitude function
+%\scalebox{1.2}{
+%$ f \colon \bool^n \to \complex $
+%} with
+%\scalebox{1.2}{
+%$\ket{\phi} = \displaystyle \sum_{i \in \bool^n} f(i) \ket{i}$.
+%}
+%\end{block}
+%
+%
+%\begin{textblock}{14}(0,.3)
+%\centering
+%\only<1>{
+%\tikzset{every picture/.style={->,thick}}
+%%~\hspace{-.6cm}
+%\begin{tikzpicture}[
+%    scale=0.3,
+%    every path/.style={>=latex},
+%    every node/.style={},
+%    inner sep=0pt,
+%    minimum size=0.3cm,
+%    line width=1pt,
+%    node distance=1cm,
+%    thick,
+%    font=\footnotesize
+%    ]
+%\node[] (vec) {
+%    \begin{minipage}{2cm}\footnotesize
+%    $
+%	\def\arraystretch{1.3}
+%    \begin{matrix*}[c]
+%    f_{000}=\\f_{001}=\\f_{010}=\\f_{011}=\\f_{100}=\\f_{101}=\\f_{110}=\\f_{111}=\\
+%    \end{matrix*}
+%    \begin{bmatrix*}[c]
+%    1, \\0, \\ 2,\\ 0, \\ 1,\\ 0, \\ -2,\\0\phantom{,}\\
+%    \end{bmatrix*}
+%	\begin{minipage}{1cm}
+%	$\left.
+%    \begin{matrix}
+%      \\ \\ \\ \\
+%    \end{matrix}
+%\~~\right \}{= f_0}\\
+%    \begin{matrix}
+%      \\ \\ \\ \\
+%    \end{matrix}
+%    $
+%	\end{minipage}
+%    $
+%    \end{minipage}
+%};
+%\end{tikzpicture}
+%}
+%\end{textblock}
+%
+%
+\pause
+
 
 \tikzset{every picture/.style={->,thick}}
 ~\hspace{-1cm}
@@ -178,45 +409,55 @@ We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon 
     ]
 
 
-    % nodes
+
+    % nodes    
     \node[draw,circle] (a1) {};
     \node[draw,circle, below = .45cm of a1, xshift=-.9cm] (a2) {};
     \node[draw,circle, below = .45cm of a1, xshift= .9cm] (a3) {};
-%    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
+    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
+    \draw[e0=  0] (a2) edge  node[] {} (a41);
+
     \node[draw,circle, below = .45cm of a2, xshift= .3cm] (a42) {};
     \node[draw,circle, below = .45cm of a3, xshift=-.3cm] (a43) {};
     \node[draw,circle, below = .45cm of a3, xshift= .3cm] (a44) {};
+    \node[leaf, below=.45cm of a41, xshift=-.5cm      ] (w1) {$1$};
+    \draw[e0=  0] (a41) edge  node[] {} (w1);
 
-%\only<-2,5->{
-    \node[leaf, below= .45cm of a42, xshift= -.13cm, inner sep=0pt] (w3) {$2$};
-    \node[leaf, right= .32cm of w3,inner sep=0pt] (w5) {$1$};
-    \node[leaf, right= .32cm of w5,inner sep=0pt] (w7) {$-2$};
-
-    \draw[e0= 0] (a42) edge   (w3);
-    \draw[e0= 0] (a43) edge   (w5);
-    \draw[e0= 0] (a44) edge  (w7);
-%}
-
-%\only<3-4>{
-%    \node[leaf, below= .45cm of a42, xshift=.6cm] (w1) {$1$};
-%    
-%    \draw[e0= 0] (a42) edge  node[above right,pos=.3] {$2$} (w1);
-%    \draw[e0= 0] (a43) edge  node[above left,pos=.3] {} (w1);
-%    \draw[e0=-20] (a44) edge  node[pos=.4,below right] {$-2$} (w1);
-%}
-
-
+\onslide<2>{
+    \node[leaf, right= .02cm of w1,inner sep=0pt] (w2) {$0$};
+    \draw[e1=  0] (a41) edge  node[] {} (w2);
+}
+    \node[leaf, right= .04cm of w2,inner sep=0pt] (w3) {$2$};
+\onslide<2>{
+    \node[leaf, right= .02cm of w3,inner sep=0pt] (w4) {$0$};
+    \draw[e1=  0] (a42) edge  node[] {} (w4);
+}
+    \node[leaf, right= .02cm of w4,inner sep=0pt] (w5) {$1$};
+\onslide<2>{
+    \node[leaf, right= .02cm of w5,inner sep=0pt] (w6) {$0$};
+    \draw[e1=  0] (a43) edge  node[] {} (w6);
+}
+    \node[leaf, right= .02cm of w6,inner sep=0pt] (w7) {$-2$};
+\onslide<2>{
+    \node[leaf, right= .02cm of w7,inner sep=0pt] (w8) {$0$};
+    \draw[e1=  0] (a44) edge  node[] {} (w8);
+}
+        
     % edges
     \draw[<-] (a1) --++(90:2cm) node[right,pos=.7] {};
     \draw[e0 = 0] (a1) edge  node[] {} (a2);
     \draw[e1 = 0] (a1) edge  node[] {} (a3);
 
-    \draw[e0=  0] (a2) edge  node[] {} (a43);
     \draw[e1=  0] (a2) edge  node[] {} (a42);
     \draw[e0=  0] (a3) edge  node[] {} (a43);
     \draw[e1=  0] (a3) edge  node[] {} (a44);
+    \draw[e0=  0] (a42) edge  node[] {} (w3);
+    \draw[e0=  0] (a43) edge  node[] {} (w5);
+    \draw[e0=  0] (a44) edge  node[] {} (w7);
 
-  
+
+
+
 \node[left = 1.3cm of a1.south,yshift=-1cm] (vec) {
     \begin{minipage}{1.7cm}\footnotesize
     $
@@ -233,16 +474,91 @@ We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon 
 };
 
 
- \node[below= 2.5cm of a1,text width= 2.99cm]  (add)   {\centering Multi-Terminal DD (MTBDD)};
+    \node[below= 2.5cm of a1]   (dt)  {Decision tree};
 
-\pause[3]
+
+
+\pause
+
+
+\pause
+
+
+    \node[draw,circle, below = .45cm of a2, xshift=-.3cm,fill=red] (a41) {};
+%    \node[draw,circle, below = .45cm of a2, xshift= .3cm,fill=purple] (a42) {};
+    \node[draw,circle, below = .45cm of a3, xshift=-.3cm,fill=green] (a43) {};
+%    \node[draw,circle, below = .45cm of a3, xshift= .3cm,fill=blue] (a44) {};
+
+\only<4>{
+\node[right= of a1, text width = 3cm] {
+\color{red}$f_{00} = \begin{bmatrix*}[c]
+    				   1 \\ 0\\
+    				\end{bmatrix*}$\\\vspace{3mm}
+\color{green}\scriptsize$ f_{10} = f_{00}$\\\vspace{4mm}
+};
+}
+
+
+\pause
+
+    % nodes
+    \node[draw,circle, right= 3.5cm of a1] (a1) {};
+    \node[draw,circle, below = .45cm of a1, xshift=-.9cm] (a2) {};
+    \node[draw,circle, below = .45cm of a1, xshift= .9cm] (a3) {};
+%    \node[draw,circle, below = .45cm of a2, xshift=-.3cm] (a41) {};
+    \node[draw,circle, below = .45cm of a2, xshift= .3cm] (a42) {};
+    \node[draw,circle, below = .45cm of a3, xshift=-.3cm,shade, shading=axis, left color=red,  right color=green, shading angle=90] (a43) {};
+    \node[draw,circle, below = .45cm of a3, xshift= .3cm] (a44) {};
+
+\only<-5>{
+    \node[leaf, below= .45cm of a42, xshift= -.13cm, inner sep=0pt] (w3) {$2$};
+	\onslide<2>{
+    \node[leaf, right= .02cm of w3,inner sep=0pt] (w4) {$0$};
+	}
+    \node[leaf, right= .02cm of w4,inner sep=0pt] (w5) {$1$};
+	\onslide<2>{
+    \node[leaf, right= .02cm of w5,inner sep=0pt] (w6) {$0$};
+	}
+    \node[leaf, right= .02cm of w6,inner sep=0pt] (w7) {$-2$};
+
+    \draw[e0= 0] (a42) edge   (w3);
+    \draw[e0= 0] (a43) edge   (w5);
+    \draw[e0= 0] (a44) edge  (w7);
+}
+
+\only<6->{
+    \node[leaf, below= .45cm of a42, xshift=.6cm] (w1) {$1$};
+    
+    \draw[e0= 0] (a42) edge  node[above right,pos=.3] {$2$} (w1);
+    \draw[e0= 0] (a43) edge  node[above left,pos=.3] {} (w1);
+    \draw[e0=-20] (a44) edge  node[pos=.4,below right] {$-2$} (w1);
+}
+
+
+    % edges
+    \draw[<-] (a1) --++(90:2cm) node[right,pos=.7] {};
+    \draw[e0 = 0] (a1) edge  node[] {} (a2);
+    \draw[e1 = 0] (a1) edge  node[] {} (a3);
+
+    \draw[e0=  0] (a2) edge  node[] {} (a43);
+    \draw[e1=  0] (a2) edge  node[] {} (a42);
+    \draw[e0=  0] (a3) edge  node[] {} (a43);
+    \draw[e1=  0] (a3) edge  node[] {} (a44);
+
+    
+
+    \node[below= 2.5cm of a1]  (add)   {Algebraic DD (ADD)};
+
+
+\pause
+\pause
 
 %    \node[draw,circle, below = .45cm of a2, xshift=-.3cm,fill=red] (a41) {};
     \node[draw,circle, below = .45cm of a2, xshift= .3cm,fill=purple] (a42) {};
     \node[draw,circle, below = .45cm of a3, xshift=-.3cm,fill=green] (a43) {};
     \node[draw,circle, below = .45cm of a3, xshift= .3cm,fill=blue] (a44) {};
 
-\only<3>{
+\only<7>{
 \node[right= of a3, text width = 3cm] {
 \color{green}$f_{00} = f_{10} = \begin{bmatrix*}[c]
     				   1, \\ 0\phantom{,}\\
@@ -277,37 +593,176 @@ We can think of a quantum state $\vec v$ as a pseudo Boolean function $f \colon 
     \draw[e0=0] (a41) edge  node[left] {} (w1);
 %    \draw[e1=25] (a41) edge  node[lbl,right] {$0$} (w1);
 
-\node[below= 2.5cm of a1,text width= 2.6cm] (aadd) {\centering Edge-Valued DD (EVDD)};
+\node[below= 2.5cm of a1] (aadd) {EVDD};
 
 
 \pause
 
-\node[below= .3cm of add, xshift=-2cm] {\alert{\textbf{Merge nodes $v, w$: }}};
-\node[below= .3cm of add] {\alert{$\vec v = \vec w$ }};
-\node[below= .3cm of aadd, xshift=.cm,text width = 4cm,align=center] {\alert{$\vec v = \gamma \cdot \vec w$\\ \vspace{3mm}(equivalent up to a complex factor $\lambda$)}};
+\node[below= .3cm of dt, xshift=-2cm] {\alert{\textbf{Merge nodes $v, w$: }}};
+\node[below= .3cm of dt] {\alert{~~~~Never}};
+\node[below= .3cm of add] {\alert{$\ket v = \ket w$ }};
+\node[below= .3cm of aadd, xshift=.cm,text width = 4cm,align=center] {\alert{$\ket v = \gamma \cdot \ket w$\\ \vspace{3mm}(equivalent up to a complex factor $\gamma$)}};
 
     \onslide<1->
 \end{tikzpicture}
 
-\onslide<+->{
+\pause
 \centering
-\alert{(EVDD can be exponentially more succinct than MTBDD.)}
-}
-\vspace{-1em}
+\alert{(EVDD can be exponentially more succinct than ADD.)}
 
-\phantom{
-\cite{fujita1997multi,Vrudhula1996}
+
+\end{frame}
+
+
+
+\begin{frame}{Benefits of \ul{Decision Diagrams}}
+
+\begin{block}{Why Decision Diagrams?}
+\begin{itemize}
+	\item Succinct representation of many quantum states: 
+		\alert{\#nodes $\ll 2^n$}\\
+		(based on empirical results)
+	\item<2-> ``Homomorphic compression scheme'' for combinatorial data
+	\item<5-> Operations often linear-time in the size of the DD: 
+%	(\alert{number of nodes $m$}):
+	\\
+\vspace{4mm}
+\centering
+\scalebox{1.2}{\phantom{ZZZZZZZZZ}	
+$
+ \ket{\underbrace{\phi_{i+1}}_{
+\oh(\alert m)}} ~~=~~ {U ~~\cdot~~ \ket{\underbrace{{\phi_i}}_{\mathclap{\alert m \text{ nodes}}}}}
+$
 }
+\end{itemize}
+\end{block}
+
 
 \vfill
-\printbibliography[section=\therefsection]
-\end{frame}
-\end{refsection}
+
+\pause
+\pause
 
 
+\begin{exampleblock}{Simulation is (often simpler than) matrix-vector multiplication}
+\begin{columns}
+\begin{column}{.3\textwidth}
+~~~~~~\Qcircuit @C=2.3em @R=1.2em {
+ & \gate{X} & \qw  \\
+& \qw      & \qw \\% \lstick{\phi_1} \\
+& \qw      & \qw \\
+  & \dstick{X \otimes I \cdot \ket{\phi_i} = \ket{\phi_{i+1}}} & \dstick{}
+\gategroup{1}{2}{3}{2}{.7em}{--}
+}
 
-\begin{refframe}{Chronology of Decision Diagrams for Pseudo-Boolean Functions}
+~\\
+
+~\\
+\end{column}
+\begin{column}{.7\textwidth}
 	
+	\tikzset{every picture/.style={->,thick}}
+~\hspace{-1cm}
+\begin{tikzpicture}[
+    scale=0.3,
+    every path/.style={>=latex},
+    every node/.style={},
+    inner sep=0pt,
+    minimum size=0.3cm,
+    line width=1pt,
+    node distance=1cm,
+    thick,
+    font=\footnotesize
+    ]
+
+
+
+\node[] (vec) {
+    \begin{minipage}{3.4cm}\footnotesize
+    $
+X \otimes I \cdot
+\def\arraystretch{1.3}
+    \begin{bmatrix*}[c]
+    \color{red} 1 \\\color{red}{0} \\ 
+    \color{red}{2}\\\color{red}{0}\\
+    \color{green}    		{1}\\
+    \color{green}{0}\\ 
+    \color{green}{-2}\\
+    \color{green}{0} \\
+    \end{bmatrix*}
+    ~~~=~~~
+    \begin{bmatrix*}[c]
+    \color{green}    		{1}\\\color{green}{0}\\ 
+    		\color{green}{-2}\\\color{green}{0{}} \\
+    \color{red}{1} \\\color{red}{0} \\ \color{red}{2}\\\color{red}{0}\\
+    \end{bmatrix*}
+    $
+    \end{minipage}
+};
+
+\pause
+    % nodes
+    \node[draw,circle, right= .8cm of vec,yshift=1cm] (a1) {};
+    \node[draw,circle, below = .45cm of a1, xshift=-.6cm,fill=red] (a2) {};
+    \node[draw,circle, below = .45cm of a1, xshift= .6cm,fill=green] (a3) {};
+    \node[draw,circle, below = .45cm of a2, xshift= .6cm] (a4) {};
+    \node[draw,circle,rectangle,minimum size=0.4cm, below= .45cm of a4] (w1) {$1$};
+    
+    % edges
+    \draw[<-] (a1) --++(90:2cm) node[,right=1mm,pos=.8] {\scalebox{1.4}{$\phi_i$}};
+    \draw[e0] (a1) edge  node[,left,pos=.2] {} (a2);
+    \draw[e1] (a1) edge  node[,right,pos=.2] {} (a3);
+
+
+    \draw[e0= 20] (a2) edge  node[] {} (a4);
+    \draw[e1= 20] (a2) edge  node[above right,pos=.3] {$2$} (a4);
+    \draw[e0= 20] (a3) edge  node[] {} (a4);
+    \draw[e1= 20] (a3) edge  node[right] {$-2$} (a4);
+    \draw[e0= 0] (a4) edge  node[] {} (w1);
+%    \draw[e1= 25] (a4) edge  node[lbl,right] {$0$} (w1);
+    
+    
+    \node[right= .5mm of a3] {\scalebox{1.3}{$\underrightarrow{~~X \otimes I~~}$}};
+
+    % nodes
+    \node[draw,circle, right= 3.6cm of vec,yshift=1cm] (a1) {};
+    \node[draw,circle, below = .45cm of a1, xshift=-.6cm,fill=red] (a2) {};
+    \node[draw,circle, below = .45cm of a1, xshift= .6cm,fill=green] (a3) {};
+    \node[draw,circle, below = .45cm of a2, xshift= .6cm] (a4) {};
+    \node[draw,circle,rectangle,minimum size=0.4cm, below= .45cm of a4] (w1) {$1$};
+    
+    % edges
+    \draw[<-] (a1) --++(90:2cm) node[,right=1mm,pos=.8] {\scalebox{1.4}{$\phi_{i+1}$}};
+    \draw[color=orange,e1] (a1) edge  node[left,pos=.2] {} (a2);
+    \draw[color=orange,e0] (a1) edge  node[right,pos=.2] {} (a3);
+
+    \draw[e0= 20] (a2) edge  node[] {} (a4);
+    \draw[e1= 20] (a2) edge  node[above right,pos=.3] {$2$} (a4);
+    \draw[e0= 20] (a3) edge  node[] {} (a4);
+    \draw[e1= 20] (a3) edge  node[right] {$-2$} (a4);
+    \draw[e0= 0] (a4) edge  node[] {} (w1);
+%    \draw[e1= 25] (a4) edge  node[lbl,right] {$0$} (w1);
+    
+    
+    
+\end{tikzpicture}
+	
+	
+\end{column}
+\end{columns}
+\end{exampleblock}
+
+
+
+
+\end{frame}
+
+
+
+
+\begin{refsection}
+\begin{frame}{Chronology of Decision Diagrams for Pseudo-Boolean Functions}
+
 \vspace{-.8em}
 
 
@@ -332,7 +787,15 @@ FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $\vec 
 
 %\nocite{limdd2}
 
-\end{refframe}
+
+\vfill
+\printbibliography[section=\therefsection]
+
+\centering
+\fbox{\includegraphics[width=.7\textwidth]{graphics/ARinQC}}
+\vspace{-5em}
+\end{frame}
+\end{refsection}
 
 
 
@@ -367,7 +830,7 @@ FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $\vec 
 
 \begin{block}<2->{Applications for Quantum Circuits:}
 \begin{itemize}
-	\item Simulation			\hfill   $G_k\cdots G_1 \cdot \vec v$
+	\item Simulation			\hfill   $U_k\cdots U_1 \cdot \vec v$
 	\item Equivalence checking	 \hfill $U \cdot V^\dagger = I$
 %	\item Synthesis / optimization~\cite{abdollahi2006analysis,amy2013meet,zulehner2017improving}
 \end{itemize}
@@ -400,7 +863,7 @@ FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $\vec 
 \begin{alertblock}{Performance Characteristics for Simulation~\cite{grurl2020arrays}}
 	\begin{itemize}
 		\item Very fast and memory-efficient for structured quantum circuits
-		\item EVDD is prone to numerical instability~\cite{niemann2020overcoming}; exact representations solve this~\cite{9586191} 
+%		\item EVDD is prone to numerical instability~\cite{niemann2020overcoming}; exact representations solve this~\cite{9586191} 
 	\end{itemize}
 \end{alertblock}
 
@@ -449,21 +912,22 @@ FEVBDD~(1997)~\cite{tafertshofer1997factored}, AADD~(2005)~\cite{aadd}		& $\vec 
 %  \node[text width=1.3cm,align=center]  at (.9,-1.) {RBM};
 
 
+\onslide<2->{
+  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (B) at (-.5,.2) 	{\textcolor{white}{poly-sized EVDD}};
+}	
 
-%  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm] (B) at (-.5,.3) 	{\textcolor{white}{QMDD}};						
-
-  \node [venn circle = OliveGreen,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1] (C) at (.5,.2) {\textcolor{white}{Stabilizer states}};
+  \node [venn circle = OliveGreen,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1] (C) at (.5,.2) {\textcolor{white}{Clifford states}};
 \end{tikzpicture}	
 
-\alert{Stabilizer circuits are non-universal \& classically simulatable, but crucial in error correction, etc.}
+\alert{Clifford circuits are non-universal \& classically simulatable, but crucial in error correction, etc.}
 
 \pause
 
 
-\begin{alertblock}{EVDD can't succinctly represent stabilizer states, yet:}
+\begin{alertblock}{EVDD can't succinctly represent Clifford states, yet:}
 	\begin{itemize}
 %		\item For \alert{stabilizer states}, we proved  that EVDD can be exponential
-		\item Stabilizers are a subset of states that are \alert{classically simulatable!}
+		\item Clifford states are a subset of states that are \alert{classically simulatable!}
 		\item Important in error correction, measurement-based QC and circuit equivalence
 	\end{itemize}
 \end{alertblock}
@@ -665,9 +1129,195 @@ EVDD requires $2^{\Omega({{n}})}$ space to represent
 
 \node[below= 2.5cm of a1] (aadd) {\centering LIMDD};
 
-
-
 \end{tikzpicture}
+
+\pause
+
+\scalebox{.6}{
+\begin{tabular}{l|l|l|l|l}
+    \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1cm,
+        thick, state/.style={circle,draw,minimum size=0.5cm},font=\scriptsize, scale=0.3,
+    inner sep=0pt,]       
+ 
+    \node[state](1){};
+    \node[leaf] (s)[below = .5cm of 1]{$1$};
+        
+    \draw[<-,e1] (1) --++(0:2.4cm) node[] {};
+    
+    \path[]
+    (1)  edge[e0= 20]  node[pos=.6,left] {} (s)
+    (1) edge[e1= 20]  node[pos=.45,] {} (s)
+	;
+
+\node[state,draw=white,above = .5cm of 1] (a13) {};
+\node[state,draw=white,above = .5cm of a13] (a12) {};
+\node[state,draw=white,above = .5cm of a12] (a11) {};
+
+\node[circle, fill=black, above = .8cm of a11,minimum size=.1cm,xshift=-.2cm] (c1) {};
+\node[below right=-.1cm of c1] {$A$};
+
+%\node[left =.5cm of a11,yshift=1cm] {a)};
+    \end{tikzpicture}
+&
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1cm,
+        thick, state/.style={circle,draw,minimum size=0.5cm},font=\scriptsize, scale=0.3,
+    inner sep=0pt,]
+        
+    \node[state](1){};
+    \node[state](1a)[below= .5cm of 1]{};
+    \node[leaf] (s)[below = .5cm of 1a]{$1$};
+        
+    \draw[<-,e1] (1) --++(0:2.4cm) node[] {};
+    
+    \path[]
+    (1)  edge[e0= 20]  node[pos=.6,left] {} (1a)
+    (1)  edge[e1= 20]  node[lbl, pos=.48] {$Z$} (1a)
+    (1a) edge[e0= 20]  node[pos=.6,left] {} (s)
+    (1a) edge[e1= 20]  node[pos=.45,] {} (s)
+	;
+\node[state,draw=white,above = .5cm of 1] (a12) {};
+\node[state,draw=white,above = .5cm of a12] (a11) {};
+
+\node[circle, fill=black, above = .8cm of a11,minimum size=.1cm,xshift=-.2cm] (c1) {};
+\node[below right=-.1cm of c1] {$A$};
+\node[circle, fill=black, right = .4cm of c1,minimum size=.1cm] (c2) {};
+\node[below right=-.1cm of c2] {$B$};
+%
+%
+\draw[-] (c1) -- (c2);
+%
+%
+%
+
+%\node[left =.5cm of a11,yshift=1cm] {b)};
+    \end{tikzpicture}
+&
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1cm,
+        thick, state/.style={circle,draw,minimum size=0.5cm},font=\scriptsize, scale=0.3,
+    		inner sep=0pt,]
+    %
+    \node[state,right= 1cm of a1] (a1) {};
+    \node[state, below =.5cm of a1] (a3) {};
+    \node[state, below =.5cm of a3] (a4) {};
+    \node[draw,rectangle,minimum size=0.4cm, below= .5cm of a4] (w4) {1};
+
+    %
+    \draw[<-] (a1) --++(0:2cm) node[pos=1.4] {};
+    \draw[e0=25] (a1) edge  node[] {} (a3);
+    \draw[e1=25] (a1) edge  node[lbl,right, pos=.3] {$Z\otimes \id$} (a3);
+    \draw[e0=25] (a1) edge  node[] {} (a3);
+    \draw[e1=25] (a3) edge  node[lbl,right, pos=.3] {$Z$} (a4);
+    \draw[e0=25] (a3) edge  node[] {} (a4);
+    \draw[e1=25] (a4) edge  node[right] {} (w4);
+    \draw[e0=25] (a4) edge  node[] {} (w4);
+    
+    
+    \node[state,draw=white,above = .5cm of a1] (a11) {};
+
+\node[circle, fill=black, above = .8cm of a11,minimum size=.1cm,xshift=-.2cm] (c1) {};\node[below right=-.1cm of c1] {$A$};
+\node[circle, fill=black, right = .4cm of c1,minimum size=.1cm] (c2) {};
+\node[below right=-.1cm of c2] {$B$};
+%
+\node[circle, fill=black, below = .4cm of c2,minimum size=.1cm] (c4) {};
+\node[below right=-.1cm of c4] {$C$};
+\draw[-] (c1) -- (c2);
+%
+%
+\draw[-] (c4) -- (c2);
+
+%\node[left =.5cm of a11,yshift=1cm] {c)};
+\end{tikzpicture}
+&
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1cm,
+        thick, state/.style={circle,draw,minimum size=0.5cm},font=\scriptsize, scale=0.3,
+    		inner sep=0pt,]
+    %
+    \node[state,right= 1cm of a1] (a1) {};
+    \node[state, below =.5cm of a1] (a3) {};
+    \node[state, below =.5cm of a3] (a4) {};
+    \node[state, below =.5cm of a4] (a5) {};
+    \node[draw,rectangle,minimum size=0.4cm, below= .5cm of a5] (w4) {1};
+
+    %
+    \draw[<-] (a1) --++(0:2cm) node[pos=1.4] {};
+    \draw[e0=25] (a1) edge  node[] {} (a3);
+    \draw[e1=25] (a1) edge  node[lbl,right, pos=.3] {$Z\otimes \id \otimes Z$} (a3);
+    \draw[e0=25] (a1) edge  node[] {} (a3);
+    \draw[e1=25] (a3) edge  node[lbl,right, pos=.3] {$Z\otimes \id$} (a4);
+    \draw[e0=25] (a3) edge  node[] {} (a4);
+    \draw[e1=25] (a4) edge  node[lbl,right, pos=.3] {$Z$} (a5);
+    \draw[e0=25] (a4) edge  node[] {} (a5);
+    \draw[e0=25] (a5) edge  node[] {} (w4);
+    \draw[e1=25] (a5) edge  node[right, pos=.3] {} (w4);
+    
+\node[circle, fill=black, above = .8cm of a1,minimum size=.1cm,xshift=0cm] (c1) {};
+\node[below right=-.1cm of c1] {$A$};
+\node[circle, fill=black, right = .4cm of c1,minimum size=.1cm] (c2) {};
+\node[below right=-.1cm of c2] {$B$};
+\node[circle, fill=black, below = .4cm of c1,minimum size=.1cm] (c3) {};
+\node[below right=-.1cm of c3] {$D$};
+\node[circle, fill=black, below = .4cm of c2,minimum size=.1cm] (c4) {};
+\node[below right=-.1cm of c4] {$C$};
+\draw[-] (c1) -- (c2);
+\draw[-] (c1) -- (c3);
+\draw[-] (c4) -- (c3);
+\draw[-] (c4) -- (c2);
+
+%\node[left =.5cm of a1,yshift=1cm] {d)};
+    
+	\end{tikzpicture}
+&\hspace{-.2cm}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=.7cm,
+        thick, state/.style={circle,draw,minimum size=0.5cm},font=\scriptsize, scale=0.3,
+    		inner sep=0pt,]
+\node[state,] (n1) {};
+
+\node[left =.5cm of n1,yshift=0cm] {\textbf{EVDD:}};
+
+
+\node[state](n2)[below = of n1, xshift=-1.3cm]{};
+\node[state](n3)[below = of n1, xshift= 1.3cm, inner sep = 0pt]{};
+
+\node[state](n21)[below = of n2, xshift=-.7cm, inner sep = 0pt]{};
+\node[state](n22)[below = of n2, xshift= .7cm, inner sep = 0pt]{};
+\node[state](n31)[below = of n3, xshift=-.7cm, inner sep = 0pt]{};
+\node[state](n32)[below = of n3, xshift= .7cm, inner sep = 0pt]{};
+
+\node[state](n41)[below = of n21, xshift= .7cm, inner sep = 0pt]{};
+\node[state](n42)[below = of n31, xshift= .7cm, inner sep = 0pt]{};
+
+\node[draw, leaf,below = of n41, xshift=1.3cm] (e) {$1$};
+
+\draw[<-] (n1) --++(0:2cm) node[pos=.6] {};
+
+\path[]
+(n1) edge[e0] node[left,pos=.5] {} (n2)
+(n1) edge[e1] node[]			{} (n3)
+(n2) edge[e0] node[left,pos=.5] {} (n21)
+(n2) edge[e1] node[,] 		{} (n22)
+(n3) edge[e0] node[left,pos=.5] {} (n31)
+(n3) edge[e1] node[lbl] {$-1$} (n32)
+
+(n21) edge[e0=20] node[left,pos=.5] {}  (n41)
+(n21) edge[e1=20] node[		  ] {}  (n41)
+(n22) edge[e1] node[left,pos=0.7,below,lbl] {$-1$}  (n42)
+(n22) edge[e0] node[right,yshift=.cm] {}  (n41)
+(n31) edge[e0] node[left,pos=.5] {} (n41)
+(n31) edge[e1] node[pos=.7	 ] {} (n42)
+(n32) edge[e1=0] node[lbl,left,pos=.05] {$-1$} (n41)
+(n32) edge[e0=20] node[      ] {} (n42)
+
+
+(n41) edge[e0=20] node[pos=.5] {} (e)
+(n41) edge[e1=20] node[pos=.5] {} (e)
+(n42) edge[e0=20] node[pos=.5] {} (e)
+(n42) edge[e1=20] node[lbl] {$-1$} (e);
+\end{tikzpicture}
+\\
+\end{tabular}
+}
+
+\vspace{1em}
 
 \phantom{\cite{limdd}}
 
@@ -705,8 +1355,8 @@ EVDD requires $2^{\Omega({{n}})}$ space to represent
 \begin{block}{Theoretical Characteristics~\cite{vinkhuijzen2023efficient}}
 \vspace{-.5em}
 	\begin{itemize}
-		\item<+-> LIMDD is the only DD strictly more succinct than EVDD \& stabilizer formalism 
-		\item<+-> Simulation operations are tractable in LIMDD
+		\item<+-> LIMDD is the only DD strictly more succinct than EVDD \& Clifford states 
+		\item<+-> Clifford simulation tractable in LIMDD
 		\item<+-> Fidelity and inner product are not tractable~\cite{vinkhuijzen2024a}
 	\end{itemize}
 	\vspace{-.5em}
@@ -737,7 +1387,7 @@ EVDD requires $2^{\Omega({{n}})}$ space to represent
 
   \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (B) at (-.5,.3) 	{\textcolor{white}{poly-EVDD}};						
 
-  \node [venn circle = OliveGreen!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (C) at (.5,.3) {\textcolor{white}{Stabilizer states}};
+  \node [venn circle = OliveGreen!100!white,text width=1cm,align=center, minimum width=1.cm,text opacity=1] (C) at (.5,.3) {\textcolor{white}{Clifford states}};
 
 \end{tikzpicture}
 }
@@ -810,9 +1460,9 @@ EVDD
 
 \begin{exampleblock}{Circuit equivalence check implementation}
 \begin{itemize}
-	\item 	\limdd implemented in DDSIM~\cite{limdd2}.
+	\item 	\limdd implemented in DDSIM~\cite{vinkhuijzen2023efficient}.
 	\item 	Tested on QFT, after random Clifford  circuit
-	\item QFT is \BQP-complete
+%	\item QFT is \BQP-complete
 \end{itemize}
 \end{exampleblock}
 
