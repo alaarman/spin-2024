@@ -473,93 +473,6 @@ RBM   & \Yar    & ? & ? & \Cond & \Cond & ? & ? & \Yes & \Yes & \Yes & ? & \Yes 
 
 
 
-\begin{refframe}{``Quantum \P'' and ``Quantum \NP''}
-%	\framesubtitle{The proof uses \textit{reductio ad absurdum}.}
-
-\vfill
-
-\tikzset{venn circle/.style={circle,minimum width=2cm,fill=####1,opacity=0.4}}
-\begin{tikzpicture}[
-e/.style = {ellipse, fill=####1, draw=none,
-            minimum height=.7cm, minimum width=.9cm, inner sep=0pt},
-e/.default=black
-]
-\footnotesize
-
-
-%\draw[help lines] (0,0) grid (4,3);
-
-%\onslide<7->{
-%  \node [e = yellow!0!red!80!white,text width=2.8cm,align=center, minimum width=.8cm,  minimum height=3.6cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.25cm]north:Precise\QMA = \PSPACE}] (PSPACE) at (.8,0.5) {};
-%	\node[right = of PSPACE.north east] (ECEQ) {\color{red} \textbf{Exact} quantum circuit non-equivalence};
-%	\draw[-Circle,shorten >= -.2cm] (ECEQ) -- (PSPACE.north east);
-%}
-
-
-%\onslide<6->{
-%  \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
-%	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum circuit simulation};
-%	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
-%}
-
-
-\onslide<5->{
-  \node [e = yellow!40!red!50!white,text width=2cm,align=center, minimum width=.8cm,  minimum height=2cm,text opacity=1,label={[anchor=north, inner sep=3pt]north:\QMA}] (QMA) at (.75,0.1) {};
-	\node[right = of QMA.north east] (CEQ) {\color{red} Quantum circuit non-equivalence};
-	\draw[-Circle,shorten >= -.2cm] (CEQ) -- (QMA.north east);
-}
-
-
-	\node [venn circle = yellow!80!red,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1,label={[anchor=west, inner sep=3pt]north west:\NP}] (NP) at (0,0) {};
-	\node[left = of NP] (SAT) {\color{red}  Circuit non-equivalence};
-	\draw[-Circle,shorten >= -.18cm] (SAT) -- (NP);
-  
-  
-\onslide<3->{
-	\node [e = blue!80!white, opacity=0.5, minimum height=1cm] (BQP) at (1,0) {~~~~~~~~~~~~~~~\BQP};
-}
-
-\onslide<4->{
-  \node[below right = of BQP,text width=3cm] (QCS) {\color{OliveGreen} Quantum circuit simulation};
-  \draw[-Circle,shorten >= -.18cm] (QCS) -- (BQP);
-}
-	
-	\node<2-> [e = blue!60!white, opacity=.7] at (.5,0) {~~~~~~\BPP};
-
-
-  \node [venn circle = blue!80,text width=.3cm,align=center, minimum width=.3cm,opacity=.5,text opacity=1] (P) at (.2,0) {{~~\P}};  
-  \node[below left = of P] (CVP) {\color{OliveGreen} Circuit evaluation (simulation)};
-  \draw[-Circle,shorten >= -.18cm] (CVP) -- (P);
-
-
-%
-%	\node<9->[below = of P.south,text width=4cm] (Clifford) {\centering \color{blue} Clifford circuit simulation \cite{aaronson2008improved} /\\ Clifford circuit non-equivalence \cite{ours}};
-%	\draw<9->[-Circle,shorten >= -.2cm] (Clifford) -- (P.south);
-
-\end{tikzpicture}					
-
-
-
-%\pause[8]
-
-\centering
-\vfill
-
-
-%	\begin{block}{Despite hardness, we often focus on exact methods!}
-%\begin{itemize}
-%	\item This enables symbolic computation
-%	\item We can solve approximate problems using exact methods~\cite{wei2022accurate,hong2021approximate}.
-%\end{itemize}
-%	\end{block}
-	
-%\pause
-%\centering
-%\alert{(Actually \EQP and \QNP, which are gate-dependent.)}
-
-\end{refframe}
-
-
 
 %\begin{frame}[noframenumbering]{Overview}
 %
@@ -701,10 +614,10 @@ e/.default=black
 
 \vfill
 
-%\begin{quote}
-%``Quantum computing becomes \only<1>{easy}\only<2>{\underline{even easier}} once you take the \only<2>{\underline{most linear algebra}} out of it''
-%\end{quote}
-%\hfill Alfons Laarman
+\begin{quote}
+``Quantum computing becomes \only<1>{easy}\only<2>{\underline{even easier}} once you take the \only<2>{\underline{most linear algebra}} out of it''
+\end{quote}
+\hfill Alfons Laarman
 %\includegraphics[width=5cm]{scott-aaronson.jpeg}
 
 
@@ -714,244 +627,262 @@ e/.default=black
 
 
 
+\begin{frame}{Quantum State ($n$ qubits)}
+
+%\centering
+
+\[ \scalebox{2}{$ \vec v  = $} %\ket\phi \pause =
+	\def\arraystretch{1.3}
+    \onslide<2->{
+    \begin{matrix*}[c]
+    \text{index }\overbrace{000\dots000}^{\mathclap{\text{\alert{computational basis state}}}}:\\\text{index }{000\dots001}:\\\text{index }{000\dots010}:\\\text{index }{000\dots011}:\\\vdots\vspace{1em}\\\\\text{index }\underbrace{111\dots111}_{\vspace{3em}}:\\
+    \end{matrix*}
+    }
+    \left.
+    \begin{bmatrix*}[c]
+     i \\0 \\ 0\\ 0 \\ \vdots \\ 0 \\ 0\\ 0  \\
+    \end{bmatrix*}
+    \right\}\text{ $2^n$ complex \alert{probability amplitudes}}
+\]
+
+\end{frame}
+
+
+%\begin{frame}{Quantum State ($n$ qubits)}
+%
+%\begin{itemize}[<+->]
+%		\item
+%1-qubit state: $\ket{0} = \begin{bmatrix}1 \\0 \end{bmatrix}$,\quad $\ket{1} = \begin{bmatrix}0 \\1 \end{bmatrix}$,\quad $\ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})  = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$.	
+%			
+%In general 1-qubit state can be written as $\ket{\varphi} = \alpha\ket{0} + \beta\ket{1} = \begin{bmatrix}\alpha \\ \beta\end{bmatrix}$ where $\alpha$ and $\beta$ are complex numbers satisfying $|\alpha|^2+|\beta|^2=1$.
+%
+%		\item
+%2-qubit state: ~~
+%$\ket{00}\defn\begin{bmatrix}1 \\0 \\0 \\0 \end{bmatrix}$,~~
+%$\ket{01}\defn\begin{bmatrix}0 \\1 \\0 \\0 \end{bmatrix}$,~~
+%$\ket{10}\defn\begin{bmatrix}0 \\0 \\1 \\0 \end{bmatrix}$,~~
+%$\ket{11}\defn\begin{bmatrix}0 \\0 \\0 \\1 \end{bmatrix}$. 
+%
+%Or $\frac1{\sqrt{2}} (\ket{00} + \ket{11}) = \frac1{\sqrt{2}}\cdot \begin{bmatrix}1 \\0 \\0 \\1 \end{bmatrix} $
+%\end{itemize}
+
+
+%
+%
 %\begin{frame}{Quantum State}
-%
-%%\centering
-%
-%\[ \scalebox{2}{$ \vec v  = $} %\ket\phi \pause =
-%	\def\arraystretch{1.3}
-%    \onslide<2->{
-%    \begin{matrix*}[c]
-%    \text{index }\overbrace{000\dots000}^{\mathclap{\text{\alert{computational basis state}}}}:\\\text{index }{000\dots001}:\\\text{index }{000\dots010}:\\\text{index }{000\dots011}:\\\vdots\vspace{1em}\\\\\text{index }\underbrace{111\dots111}_{\vspace{3em}}:\\
-%    \end{matrix*}
-%    }
-%    \left.
-%    \begin{bmatrix*}[c]
-%     i \\0 \\ 0\\ 0 \\ \vdots \\ 0 \\ 0\\ 0  \\
-%    \end{bmatrix*}
-%    \right\}\text{ $2^n$ complex \alert{probability amplitudes}}
-%\]
-%
-%
-%
+%	\begin{itemize}[<+->]
+%		\item Quantum bits (qubits):
+%		\begin{itemize}
+%			\item 1-qubit state: $\ket{0} = \begin{bmatrix}1 \\0 \end{bmatrix}$,\quad $\ket{1} = \begin{bmatrix}0 \\1 \end{bmatrix}$,\quad $\ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})  = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$.	
+%			
+%			In general 1-qubit state can be written as $\ket{\varphi} = \alpha\ket{0} + \beta\ket{1} = \begin{bmatrix}\alpha \\ \beta\end{bmatrix}$ where $\alpha$ and $\beta$ are complex numbers satisfying $|\alpha|^2+|\beta|^2=1$.
+%			\item 2-qubit state: $\ket{01}\defn\ket{0}{\color{red}\otimes}\ket{1} = \begin{bmatrix}1 \\0 \end{bmatrix} {\color{red}\otimes} \begin{bmatrix}0 \\1 \end{bmatrix} = \begin{bmatrix}0 \\1 \\0 \\0 \end{bmatrix}$.
+%			
+%			Tensor product: $\begin{bmatrix}a \\b \end{bmatrix} {\color{red}\otimes} \begin{bmatrix}x \\y \end{bmatrix} = \begin{bmatrix}a\cdot\begin{bmatrix}x \\y \end{bmatrix} \\b\cdot\begin{bmatrix}x \\y \end{bmatrix} \end{bmatrix} =  \begin{bmatrix}a\cdot x \\a\cdot y \\b\cdot x \\b\cdot y \end{bmatrix}$.
+%			
+%			% \item (computational) basis state: $\ket{b}$ with $b\in\{0,1\}^n$,
+%			% e.g. $\ket{01011}$, $\ket{100}$.
+%		\end{itemize}
+%	\end{itemize}
 %\end{frame}
-
-
-
-\begin{frame}{Quantum State}
-	\begin{itemize}[<+->]
-		\item Quantum bits (qubits):
-		\begin{itemize}
-			\item 1-qubit state: $\ket{0} = \begin{bmatrix}1 \\0 \end{bmatrix}$,\quad $\ket{1} = \begin{bmatrix}0 \\1 \end{bmatrix}$,\quad $\ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})  = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$.	
-			
-			In general 1-qubit state can be written as $\ket{\varphi} = \alpha\ket{0} + \beta\ket{1} = \begin{bmatrix}\alpha \\ \beta\end{bmatrix}$ where $\alpha$ and $\beta$ are complex numbers satisfying $|\alpha|^2+|\beta|^2=1$.
-			\item 2-qubit state: $\ket{01}\defn\ket{0}{\color{red}\otimes}\ket{1} = \begin{bmatrix}1 \\0 \end{bmatrix} {\color{red}\otimes} \begin{bmatrix}0 \\1 \end{bmatrix} = \begin{bmatrix}0 \\1 \\0 \\0 \end{bmatrix}$.
-			
-			Tensor product: $\begin{bmatrix}a \\b \end{bmatrix} {\color{red}\otimes} \begin{bmatrix}x \\y \end{bmatrix} = \begin{bmatrix}a\cdot\begin{bmatrix}x \\y \end{bmatrix} \\b\cdot\begin{bmatrix}x \\y \end{bmatrix} \end{bmatrix} =  \begin{bmatrix}a\cdot x \\a\cdot y \\b\cdot x \\b\cdot y \end{bmatrix}$.
-			
-			% \item (computational) basis state: $\ket{b}$ with $b\in\{0,1\}^n$,
-			% e.g. $\ket{01011}$, $\ket{100}$.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Quantum State}
-	\begin{itemize}
-		\item An $n$-qubit quantum state: a probability (amplitude) distribution over classical states:	
-		\[
-		\alpha_0 \ket{0\dots00} + \alpha_1 \ket{0\dots01} + \dots + \alpha_{2^n-2}\ket{1\dots10} + \alpha_{2^n-1}\ket{1\dots11}
-		\]
-		\[
-		\vec v = 
-			\begin{bmatrix}\alpha_{0}\\\alpha_{1}\\\vdots\\\vdots\\ \alpha_{2^n-2}\\ \alpha_{2^n-1}\end{bmatrix}
-			~~=~~
-			\begin{bmatrix}\alpha_{\alert{0\dots00}}\\\alpha_{\alert{0\dots 01}}\\\vdots\\\vdots\\ \alpha_{\alert{1\dots10}}\\ \alpha_{\alert{1\dots11}}\end{bmatrix}
-			\begin{matrix} 
-			~~\rightarrow~~ \text{probability amplitude of } \ket{\alert{0\dots00}}\\
-			~~\rightarrow~~ \text{probability amplitude of } \ket{\alert{0\dots01}}\\
-			\\
-			\\
-			\\
-			~~\rightarrow~~ \text{probability amplitude of }\ket{\alert{1\dots10}}\\
-			~~\rightarrow~~ \text{probability amplitude of }\ket{\alert{1\dots11}}\\
-			
-			\end{matrix}
-			\]
-	\end{itemize}
-	where
-	$
-		|\alpha_{\alert{0\dots00}}|^2 + |\alpha_{\alert{0\dots 01}}|^2 + \dots + |\alpha_{\alert{1\dots10}}|^2 + |\alpha_{\alert{1\dots11}}|^2 = 1
-	$
-\end{frame}
-
-
-
-
-
-\begin{frame}{Quantum Gates}
-	\begin{itemize}
-		\item Hadamard gate
-		
-		\begin{minipage}{0.48\linewidth}
-				\begin{align*}
-					\onslide<1->{{\color{red}H\cdot\ket{0}} &{\color{red}= \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})} \\}
-					\onslide<2->{{\color{blue}H\cdot\ket{1}} &{\color{blue}= \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})} \\}
-				\end{align*}
-		\end{minipage}
-		\begin{minipage}{0.48\linewidth}
-			\begin{tikzpicture}[
-				scale=0.3,
-				every path/.style={>=latex},
-				every node/.style={},
-				inner sep=0pt,
-				minimum size=14pt,
-				line width=1pt,
-				node distance=.5cm,
-				thick,
-				font=\footnotesize
-				]
-			
-				\node[draw, circle, minimum size=0.9cm] (0)   {$\ket{0}$};
-				\node[draw,circle, right =1cm of 0, xshift=0cm, minimum size=0.9cm] (1) {$\ket{1}$};    
-				% \node[below = -.1cm of 0, xshift=1cm, minimum size=0.9cm] {$H$ gate};
-			
-			
-			\onslide<1->{\draw[black, \bigarrowhead, loop left, color=red] (0) edge node[yshift=0.2cm] {$\frac{1}{\sqrt{2}}$} (0);}
-			\onslide<1->{\draw[black, \bigarrowhead, bend left=20, color=red] (0) edge node[yshift=0.2cm] {$\frac{1}{\sqrt{2}}$} (1);}
-			\onslide<2->{\draw[black, \bigarrowhead, loop right, color=blue] (1) edge node[yshift=0.2cm] {$-\frac{1}{\sqrt{2}}$} (1);}
-			\onslide<2->{\draw[black, \bigarrowhead, bend left=20, color=blue] (1) edge node[yshift=-0.2cm] {$\frac{1}{\sqrt{2}}$} (0);}
-			\end{tikzpicture}
-		\end{minipage}
-		\onslide<3->{\item Matrix form:
-		\[
-			H = \frac{1}{\sqrt{2}}
-			\begin{bmatrix*}[r]
-			1 & 1 \\
-			1 & -1
-			\end{bmatrix*}
-		\]}
-		\onslide<4->{\item Constructive and destructive interference
-		\[
-			H\cdot H\cdot\ket{0} = \frac1{\sqrt 2}(\frac1{\sqrt 2}({\color{red} \ket 0} {\color{blue}+ \ket 1}) + \frac1{\sqrt 2}({\color{red}\ket 0}{\color{blue} - \ket 1}))
-			= \underbrace{(\frac12 {\color{red}+} \frac12){\color{red}\ket{0}}}_{{\color{red}constructive}} + \underbrace{(\frac12 {\color{blue}-} \frac12){\color{blue}\ket{1}}}_{\color{blue}destructive} = \ket 0
-		\]}
-	\end{itemize}
-
-	
-%	\onslide<5->{\begin{block}{Gate encoding}
-%		$F_{H}({\color{red}x}, {\color{blue}x'},h) ~~~~~~~~\defn \bar h \Leftrightarrow {\color{blue}x'}{\color{red}x}$  \quad \alert{leave {\color{blue}$x'$} unconstrained} \hfill\alert{$W(h) = \nicefrac{1}{\sqrt{2}}$, $W(\bar h) = -\nicefrac{1}{\sqrt{2}}$}
-%	\end{block}}
-\end{frame}
-
-
-\begin{frame}{Quantum Circuit}
-	\[
-		\begin{array}{c}  
-			\Qcircuit @C=1em @R=.7em {
-			  \lstick{\ket{0}} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \gate{H} &\qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \ctrl{1} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> 
-%			  &\qw & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em>
-			   &\qw \\
-			  \lstick{\ket{0}} & \qw & \qw & \qw & \targ & \qw 
-%			  &\gate{T}&\qw
-			  &\qw\\
-			  & \vec v_0 & & \vec v_1 & & \vec v_2 & & 
-%			  \ket{\varphi_3} 				& & 
-			}
-		\end{array}		
-	\]
-	\vspace*{2em}
-	\begin{align*}
-		\onslide<1->{\vec v_0 &= \ket{00} 
-		&&= \begin{smallmat}
-			1 \\
-			0 \\
-			0 \\
-			0
-		\end{smallmat}\\[1em]}
-		\onslide<2->{\vec v_1 &= (\alert{H} \otimes I)\cdot\vec v_0 &&= 
-		\left(\alert{\tfrac{1}{\sqrt{2}}
-		\begin{smallmat}
-			1 & 1\\
-			1 & -1
-		\end{smallmat}}
-		\otimes
-		\begin{smallmat}
-			1 & 0 \\
-			0 & 1
-		\end{smallmat}\right)
-		\cdot
-		\begin{smallmat}
-			1 \\
-			0 \\
-			0 \\
-			0
-		\end{smallmat}
-		=\tfrac{1}{\sqrt{2}}\begin{smallmat}
-			1 & 0 & 1 & 0 \\
-			0 & 1 & 0 & 1 \\
-			1 & 0 & -1 & 0 \\
-			0 & 1 & 0 & -1 
-		\end{smallmat}
-		\cdot
-		\begin{smallmat}
-			1 \\
-			0 \\
-			0 \\
-			0
-		\end{smallmat}
-		=\tfrac{1}{\sqrt{2}}
-		\begin{smallmat}
-			1 \\
-			0 \\
-			1 \\
-			0
-		\end{smallmat}
-		\\
-		& &&=  \tfrac{1}{\sqrt{2}}\ket{00}+\tfrac{1}{\sqrt{2}}\ket{10}\\[1em]}
-		\onslide<3->{\vec v_2 &= \alert{CNOT}\cdot\vec v_1 &&= 
-		\tfrac{1}{\sqrt{2}}\alert{\begin{smallmat}
-			  1 & 0 & 0 & 0 \\
-			  0 & 1 & 0 & 0 \\
-			  0 & 0 & 0 & 1 \\
-			  0 & 0 & 1 & 0 \\    
-			\end{smallmat}}\cdot
-			\begin{smallmat}
-				1 \\
-				0 \\
-				1 \\
-				0 \\    
-			  \end{smallmat}
-			  =\tfrac{1}{\sqrt{2}}
-			  \begin{smallmat}
-				  1 \\
-				  0 \\
-				  0 \\
-				  1
-			  \end{smallmat} 
-			  =\tfrac{1}{\sqrt{2}}\ket{00}+\tfrac{1}{\sqrt{2}}\ket{11}\\[1em]}
-%		\onslide<4->{\ket{\varphi_3} &= (I\otimes \alert{T})\cdot\ket{\varphi_2} &&
-%		= \left(
-%			\begin{smallmat}
-%				1 & 0 \\
-%				0 & 1
-%			\end{smallmat}
-%			\otimes
-%			\alert{\begin{smallmat}
-%				1 & 0 \\
-%				0 & \exp(i\pi/4)
-%			\end{smallmat}}
-%		\right)
+%
+%\begin{frame}{Quantum State}
+%	\begin{itemize}
+%		\item An $n$-qubit quantum state: a probability (amplitude) distribution over classical states:	
+%		\[
+%		\alpha_0 \ket{0\dots00} + \alpha_1 \ket{0\dots01} + \dots + \alpha_{2^n-2}\ket{1\dots10} + \alpha_{2^n-1}\ket{1\dots11}
+%		\]
+%		\[
+%		\vec v = 
+%			\begin{bmatrix}\alpha_{0}\\\alpha_{1}\\\vdots\\\vdots\\ \alpha_{2^n-2}\\ \alpha_{2^n-1}\end{bmatrix}
+%			~~=~~
+%			\begin{bmatrix}\alpha_{\alert{0\dots00}}\\\alpha_{\alert{0\dots 01}}\\\vdots\\\vdots\\ \alpha_{\alert{1\dots10}}\\ \alpha_{\alert{1\dots11}}\end{bmatrix}
+%			\begin{matrix} 
+%			~~\rightarrow~~ \text{probability amplitude of } \ket{\alert{0\dots00}}\\
+%			~~\rightarrow~~ \text{probability amplitude of } \ket{\alert{0\dots01}}\\
+%			\\
+%			\\
+%			\\
+%			~~\rightarrow~~ \text{probability amplitude of }\ket{\alert{1\dots10}}\\
+%			~~\rightarrow~~ \text{probability amplitude of }\ket{\alert{1\dots11}}\\
+%			
+%			\end{matrix}
+%			\]
+%	\end{itemize}
+%	where
+%	$
+%		|\alpha_{\alert{0\dots00}}|^2 + |\alpha_{\alert{0\dots 01}}|^2 + \dots + |\alpha_{\alert{1\dots10}}|^2 + |\alpha_{\alert{1\dots11}}|^2 = 1
+%	$
+%\end{frame}
+%
+%
+%
+%
+%
+%\begin{frame}{Quantum Gates}
+%	\begin{itemize}
+%		\item Hadamard gate
+%		
+%		\begin{minipage}{0.48\linewidth}
+%				\begin{align*}
+%					\onslide<1->{{\color{red}H\cdot\ket{0}} &{\color{red}= \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})} \\}
+%					\onslide<2->{{\color{blue}H\cdot\ket{1}} &{\color{blue}= \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})} \\}
+%				\end{align*}
+%		\end{minipage}
+%		\begin{minipage}{0.48\linewidth}
+%			\begin{tikzpicture}[
+%				scale=0.3,
+%				every path/.style={>=latex},
+%				every node/.style={},
+%				inner sep=0pt,
+%				minimum size=14pt,
+%				line width=1pt,
+%				node distance=.5cm,
+%				thick,
+%				font=\footnotesize
+%				]
+%			
+%				\node[draw, circle, minimum size=0.9cm] (0)   {$\ket{0}$};
+%				\node[draw,circle, right =1cm of 0, xshift=0cm, minimum size=0.9cm] (1) {$\ket{1}$};    
+%				% \node[below = -.1cm of 0, xshift=1cm, minimum size=0.9cm] {$H$ gate};
+%			
+%			
+%			\onslide<1->{\draw[black, \bigarrowhead, loop left, color=red] (0) edge node[yshift=0.2cm] {$\frac{1}{\sqrt{2}}$} (0);}
+%			\onslide<1->{\draw[black, \bigarrowhead, bend left=20, color=red] (0) edge node[yshift=0.2cm] {$\frac{1}{\sqrt{2}}$} (1);}
+%			\onslide<2->{\draw[black, \bigarrowhead, loop right, color=blue] (1) edge node[yshift=0.2cm] {$-\frac{1}{\sqrt{2}}$} (1);}
+%			\onslide<2->{\draw[black, \bigarrowhead, bend left=20, color=blue] (1) edge node[yshift=-0.2cm] {$\frac{1}{\sqrt{2}}$} (0);}
+%			\end{tikzpicture}
+%		\end{minipage}
+%		\onslide<3->{\item Matrix form:
+%		\[
+%			H = \frac{1}{\sqrt{2}}
+%			\begin{bmatrix*}[r]
+%			1 & 1 \\
+%			1 & -1
+%			\end{bmatrix*}
+%		\]}
+%		\onslide<4->{\item Constructive and destructive interference
+%		\[
+%			H\cdot H\cdot\ket{0} = \frac1{\sqrt 2}(\frac1{\sqrt 2}({\color{red} \ket 0} {\color{blue}+ \ket 1}) + \frac1{\sqrt 2}({\color{red}\ket 0}{\color{blue} - \ket 1}))
+%			= \underbrace{(\frac12 {\color{red}+} \frac12){\color{red}\ket{0}}}_{{\color{red}constructive}} + \underbrace{(\frac12 {\color{blue}-} \frac12){\color{blue}\ket{1}}}_{\color{blue}destructive} = \ket 0
+%		\]}
+%	\end{itemize}
+%
+%	
+%%	\onslide<5->{\begin{block}{Gate encoding}
+%%		$F_{H}({\color{red}x}, {\color{blue}x'},h) ~~~~~~~~\defn \bar h \Leftrightarrow {\color{blue}x'}{\color{red}x}$  \quad \alert{leave {\color{blue}$x'$} unconstrained} \hfill\alert{$W(h) = \nicefrac{1}{\sqrt{2}}$, $W(\bar h) = -\nicefrac{1}{\sqrt{2}}$}
+%%	\end{block}}
+%\end{frame}
+%
+%
+%\begin{frame}{Quantum Circuit}
+%	\[
+%		\begin{array}{c}  
+%			\Qcircuit @C=1em @R=.7em {
+%			  \lstick{\ket{0}} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \gate{H} &\qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> & \ctrl{1} & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em> 
+%%			  &\qw & \qw\ar@{.}[]+<0em,1em>;[d]+<0em,-0.5em>
+%			   &\qw \\
+%			  \lstick{\ket{0}} & \qw & \qw & \qw & \targ & \qw 
+%%			  &\gate{T}&\qw
+%			  &\qw\\
+%			  & \vec v_0 & & \vec v_1 & & \vec v_2 & & 
+%%			  \ket{\varphi_3} 				& & 
+%			}
+%		\end{array}		
+%	\]
+%	\vspace*{2em}
+%	\begin{align*}
+%		\onslide<1->{\vec v_0 &= \ket{00} 
+%		&&= \begin{smallmat}
+%			1 \\
+%			0 \\
+%			0 \\
+%			0
+%		\end{smallmat}\\[1em]}
+%		\onslide<2->{\vec v_1 &= (\alert{H} \otimes I)\cdot\vec v_0 &&= 
+%		\left(\alert{\tfrac{1}{\sqrt{2}}
+%		\begin{smallmat}
+%			1 & 1\\
+%			1 & -1
+%		\end{smallmat}}
+%		\otimes
+%		\begin{smallmat}
+%			1 & 0 \\
+%			0 & 1
+%		\end{smallmat}\right)
 %		\cdot
-%		\tfrac{1}{\sqrt{2}}
+%		\begin{smallmat}
+%			1 \\
+%			0 \\
+%			0 \\
+%			0
+%		\end{smallmat}
+%		=\tfrac{1}{\sqrt{2}}\begin{smallmat}
+%			1 & 0 & 1 & 0 \\
+%			0 & 1 & 0 & 1 \\
+%			1 & 0 & -1 & 0 \\
+%			0 & 1 & 0 & -1 
+%		\end{smallmat}
+%		\cdot
+%		\begin{smallmat}
+%			1 \\
+%			0 \\
+%			0 \\
+%			0
+%		\end{smallmat}
+%		=\tfrac{1}{\sqrt{2}}
+%		\begin{smallmat}
+%			1 \\
+%			0 \\
+%			1 \\
+%			0
+%		\end{smallmat}
+%		\\
+%		& &&=  \tfrac{1}{\sqrt{2}}\ket{00}+\tfrac{1}{\sqrt{2}}\ket{10}\\[1em]}
+%		\onslide<3->{\vec v_2 &= \alert{CNOT}\cdot\vec v_1 &&= 
+%		\tfrac{1}{\sqrt{2}}\alert{\begin{smallmat}
+%			  1 & 0 & 0 & 0 \\
+%			  0 & 1 & 0 & 0 \\
+%			  0 & 0 & 0 & 1 \\
+%			  0 & 0 & 1 & 0 \\    
+%			\end{smallmat}}\cdot
+%			\begin{smallmat}
+%				1 \\
+%				0 \\
+%				1 \\
+%				0 \\    
+%			  \end{smallmat}
+%			  =\tfrac{1}{\sqrt{2}}
 %			  \begin{smallmat}
 %				  1 \\
 %				  0 \\
 %				  0 \\
 %				  1
 %			  \end{smallmat} 
-%		= \tfrac{1}{\sqrt{2}}\ket{00}+\tfrac{\exp(i\pi/4)}{\sqrt{2}}\ket{11}}
-	\end{align*}
-\end{frame}
+%			  =\tfrac{1}{\sqrt{2}}\ket{00}+\tfrac{1}{\sqrt{2}}\ket{11}\\[1em]}
+%%		\onslide<4->{\ket{\varphi_3} &= (I\otimes \alert{T})\cdot\ket{\varphi_2} &&
+%%		= \left(
+%%			\begin{smallmat}
+%%				1 & 0 \\
+%%				0 & 1
+%%			\end{smallmat}
+%%			\otimes
+%%			\alert{\begin{smallmat}
+%%				1 & 0 \\
+%%				0 & \exp(i\pi/4)
+%%			\end{smallmat}}
+%%		\right)
+%%		\cdot
+%%		\tfrac{1}{\sqrt{2}}
+%%			  \begin{smallmat}
+%%				  1 \\
+%%				  0 \\
+%%				  0 \\
+%%				  1
+%%			  \end{smallmat} 
+%%		= \tfrac{1}{\sqrt{2}}\ket{00}+\tfrac{\exp(i\pi/4)}{\sqrt{2}}\ket{11}}
+%	\end{align*}
+%\end{frame}
 
 
 
@@ -995,7 +926,7 @@ $
 \ket{00\dots 00}
 =
 \left.
-\smat{0\\0\\\vdots\\0\\0}
+\smat{1\\0\\\vdots\\0\\0}
 \right\}\text{\scriptsize $2^n$}
 ~~~~~~~~~~
 U_i =
@@ -1056,187 +987,94 @@ Hardware specific   & Universal and more detailed
 \end{frame}
 \end{refsection}
 
-%\begin{frame}{Classical vs Quantum Information}
-%%	\framesubtitle{The proof uses \textit{reductio ad absurdum}.}
-%
-%\hspace{-2em}
-%\renewcommand\arraystretch{2}
-%\begin{tabular}{r|p{3.7cm}|p{5cm}}
-%				& \textbf{Classical} & \bf Quantum \\\hline
-%\textit{Unit:} 	& Bit		& Qubit \\
-%\pause
-%\textit{State:}  & Bitvector: $\vec s \in \set{0,1}^n$
-%	 & Pseudo-Boolean function:  $\set{0,1}^n\to \complex$ \\
-%\pause
-%\textit{Example:}  & 
-%$\underbrace{(0,0, 1, \dots, 1, 1, 0)}_{\text{length $n$}}$
-%&
-%%~~~~$\overbrace{}^{\dots 000}$\vspace{-1ex}
-%$
-%\tfrac1{\sqrt 3}
-%\underbrace{
-%[
-%    i, 0, 0, 0,  \dots \dots \dots \dots \dots \dots, 0, 1, 0, i
-%]^T
-%}_{\text{complex vector of \alert{length $2^n$}}}
-%$  
-% \\
-%%\onslide<4->{
-%\textit{Model:}  & (Uniform) Boolean circuits 
-%
-%\scalebox{.7}{
-%\begin{circuitikz}
-%\draw
-%(0,2) node[and port] (myand) {\hspace{-1ex}$\land$}
-%(2,1) node[or port] (myor) {\hspace{-1ex}$\lor$}
-%(myand.in 1) node[anchor=east] {$a$}
-%(myand.in 2) node[anchor=east] (bnode) {$b$}
-%(myand.out) -| node[above]{$x$} (myor.in 1)
-%node[below=.638cm of bnode] (cnode) {$c$}
-%(cnode) -|  (myor.in 2)
-%(myor.out) node[anchor=west] {$y$}
-%;
-%\end{circuitikz}
+
+
+
+\begin{refframe}{``Quantum \P'' and ``Quantum \NP''}
+%	\framesubtitle{The proof uses \textit{reductio ad absurdum}.}
+
+\vfill
+
+\tikzset{venn circle/.style={circle,minimum width=2cm,fill=####1,opacity=0.4}}
+\begin{tikzpicture}[
+e/.style = {ellipse, fill=####1, draw=none,
+            minimum height=.7cm, minimum width=.9cm, inner sep=0pt},
+e/.default=black
+]
+\footnotesize
+
+
+%\draw[help lines] (0,0) grid (4,3);
+
+%\onslide<7->{
+%  \node [e = yellow!0!red!80!white,text width=2.8cm,align=center, minimum width=.8cm,  minimum height=3.6cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.25cm]north:Precise\QMA = \PSPACE}] (PSPACE) at (.8,0.5) {};
+%	\node[right = of PSPACE.north east] (ECEQ) {\color{red} \textbf{Exact} quantum circuit non-equivalence};
+%	\draw[-Circle,shorten >= -.2cm] (ECEQ) -- (PSPACE.north east);
 %}
-%& (Uniform) quantum circuits 
-%
-%\vspace{-2ex}
-%\[
-%\scalebox{1}{
-%\Qcircuit @C=1em @R=.2em @!R {
-%\lstick{\ket{a}_a} & & \qw &  \ctrl{2} 	&\qw	& \qw      & \qw  \\
-%\lstick{\ket{b}_b} & & \qw &  \ctrl{1}	&\qw 	& \qw      & \qw  \\
-%\lstick{\ket{0}_x} &  & \qw & \targ  &\qw 	    & \ctrlo{1} & \qw \\  
-%\lstick{\ket{c}_c} & & \qw &     \qw 	&\qw	& \ctrlo{1} & \qw  \\
-%\lstick{\ket{1}_y} &  & \qw &     \qw   &\qw 	& \targ & \qw  
-%}}
-%\]
-%\\
-%\pause
-%&&
-%~~~~~~~~~~~$
-%\underbrace{
-%\begin{bmatrix}
-%1 & 0  & \dots & -i\\
-%%\pm P_{2,1}}:& P_{2,2}~~~  \otimes& \dots & \otimes~~~ P_{2,n},\\
-%\vdots  & \vdots  & \ddots& \vdots\\
-%i & 0  & \dots &  1\\
-%\end{bmatrix}
-%}_{2^n}
-%\left.
-%\hspace{-1ex}
-%\vphantom{
-%\begin{bmatrix}
-%1 & 0  & \dots & -i\\
-%%\pm P_{2,1}}:& P_{2,2}~~~  \otimes& \dots & \otimes~~~ P_{2,n},\\
-%\vdots  & \vdots  & \ddots& \vdots\\
-%i & 0  & \dots &  1\\
-%\end{bmatrix}}
-%\right\}\text{\scriptsize $2^n$}
-%$
-%
-%
-%
-%\end{tabular}
-%\end{frame}
 
 
-
-
-%\begin{frame}{Quantum Information: Stabilizer Formalism}
-%%	\framesubtitle{The proof uses \textit{reductio ad absurdum}.}
-%
-%\hspace{-2em}
-%\renewcommand\arraystretch{1.7}
-%\begin{tabular}{r|p{3.7cm}|p{5cm}|}
-%				& \textbf{Stabilizer} & \bf Quantum \\\hline
-%\textit{Unit:} 	& Qubit		& Qubit \\
-%\pause
-%\textit{State:}  & $n\times 2n$ bit matrix
-%	 & Pseudo-Boolean function:  $\set{0,1}^n\to \complex$ \\
-%\pause
-%\textit{Example:}  & 
-%$
-%\renewcommand\arraystretch{1.}
-%\left[
-%\begin{matrix}
-%00  & 01  & \dots & 11\\
-%%\pm P_{2,1}}:& P_{2,2}~~~  \otimes& \dots & \otimes~~~ P_{2,n},\\
-%\vdots  & \vdots  & \ddots& \vdots\\
-%10 & 00  & \dots &  11\\
-%\end{matrix} 
-%\right]$
-%&
-%%~~~~$\overbrace{}^{\dots 000}$\vspace{-1ex}
-%$
-%\tfrac1{\sqrt 3}
-%\underbrace{
-%[
-%    i, 0, 0, 0,  \dots \dots \dots \dots \dots \dots, 0, 1, 0, i
-%]
-%}_{\text{complex vector of \alert{length $2^n$}}}
-%$  
-% \\
-%\pause
-%\textit{Model:}  & (Uniform) \alert{Clifford} circuits 
-%\vspace{-2ex}
-%\[
-%\scalebox{1}{
-%\Qcircuit @C=1em @R=.em @!R {
-%\lstick{\ket{0}} & & \qw &  \ctrl{1} 	&\qw	& \qw      & \qw  \\
-%\lstick{\ket{0}} &  & \qw & \targ  &\qw 	   & \qw  & \qw \\  
-%%\lstick{\ket{0}} & & \qw &     \qw 	&\qw	&\targ  & \qw  \\
-%\lstick{\ket{0}} &  & \gate{H}  &     \qw   &\qw 	& \qw& \qw  
-%}}
-%\]
-%& (Uniform) quantum circuits 
-%\vspace{-2ex}
-%\[
-%\scalebox{1}{
-%\Qcircuit @C=1em @R=.em @!R {
-%\lstick{\ket{0}} & & \qw       &  \ctrl{2} 	&\qw	& \qw      & \qw  \\
-%\lstick{\ket{0}} & & \qw       &  \ctrl{1}	&\qw 	& \qw      & \qw  \\
-%\lstick{\ket{0}} &  & \gate{H} & \targ  &\qw 	    & \qw & \qw \\  
-%%\lstick{\ket{0}} & & \gate{H} &     \qw 	&\qw	& \targ & \qw  \\
-%}}
-%\]
-%\\
-%\textit{Gate set:}& Clifford = \set{H, S, CX} & Clifford+$T$, Clifford+Toffoli, Clifford+.. \\
-%\end{tabular}
-%
-%
-%\cols{
-%\col{5cm}{
-%\alert{Clifford circuits are classically simulatable, but non-universal!}
+%\onslide<6->{
+%  \node [e = yellow!30!red!80!white,text width=2.3cm,align=center, minimum width=.8cm,  minimum height=2.8cm,text opacity=1,label={[anchor=north, inner sep=3pt,yshift=-.2cm]north:Precise\BQP = \PP}] (PP) at (.8,0.3) {};
+%	\node[right = of PP.north east] (EQCSIM) {\color{OliveGreen} \textbf{Exact} quantum circuit simulation};
+%	\draw[-Circle,shorten >= -.2cm] (EQCSIM) -- (PP.north east);
 %}
-%\col{5cm}{
-%\begin{tikzpicture}\footnotesize
-%  \tikzset{venn circle/.style={circle,minimum width=2cm,fill=####1,opacity=0.4}}
-%  \node [venn circle=white,minimum width=2.5cm,draw] (A) at (0,0.3) {};
-%  \node  at (0,1.25) 			{Quantum states};
-%
-%%  \node [venn circle = Red!40!white, ellipse,minimum height=2.2cm, minimum width=3.6cm] (L) at (0,0.6) {};
-%%  \node  at (0,1.5) 		{\limdd};
-%  
-%%  \node [venn circle = blue!70!white,text width=1.3cm,align=center,rotate=79,ellipse,minimum height=1.8cm, minimum width=2.5cm] (B) at (-.6,-.2) {};
-%%  \node[text width=1.3cm,align=center]  at (-.9,-1.) {MPS};
-%
-%
-%%  \node [venn circle = green!70!white,text width=1.3cm,align=center,rotate=119,ellipse,minimum height=1.8cm, minimum width=2.5cm] (B) at (.6,-.2) {};
-%%  \node[text width=1.3cm,align=center]  at (.9,-1.) {RBM};
-%
-%
-%
-%%  \node [venn circle = Blue!100!white,text width=1cm,align=center, minimum width=1.cm] (B) at (-.5,.3) 	{\textcolor{white}{QMDD}};						
-%
-%  \node [venn circle = OliveGreen,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1] (C) at (.5,.2) {\textcolor{white}{Stabilizer states}};
-%\end{tikzpicture}					
-%}
-%}
-%
-%\end{frame}
 
 
+\onslide<5->{
+  \node [e = yellow!40!red!50!white,text width=2cm,align=center, minimum width=.8cm,  minimum height=2cm,text opacity=1,label={[anchor=north, inner sep=3pt]north:\QMA}] (QMA) at (.75,0.1) {};
+	\node[right = of QMA.north east] (CEQ) {\color{red} Quantum circuit non-equivalence};
+	\draw[-Circle,shorten >= -.2cm] (CEQ) -- (QMA.north east);
+}
+
+
+	\node [venn circle = yellow!80!red,text width=1cm,align=center, minimum width=.8cm,opacity=.5,text opacity=1,label={[anchor=west, inner sep=3pt]north west:\NP}] (NP) at (0,0) {};
+	\node[left = of NP] (SAT) {\color{red}  Circuit non-equivalence};
+	\draw[-Circle,shorten >= -.18cm] (SAT) -- (NP);
+  
+  
+\onslide<3->{
+	\node [e = blue!80!white, opacity=0.5, minimum height=1cm] (BQP) at (1,0) {~~~~~~~~~~~~~~~\BQP};
+}
+
+\onslide<4->{
+  \node[below right = of BQP,text width=3cm] (QCS) {\color{OliveGreen} Quantum circuit simulation};
+  \draw[-Circle,shorten >= -.18cm] (QCS) -- (BQP);
+}
+	
+	\node<2-> [e = blue!60!white, opacity=.7] at (.5,0) {~~~~~~\BPP};
+
+
+  \node [venn circle = blue!80,text width=.3cm,align=center, minimum width=.3cm,opacity=.5,text opacity=1] (P) at (.2,0) {{~~\P}};  
+  \node[below left = of P] (CVP) {\color{OliveGreen} Circuit evaluation (simulation)};
+  \draw[-Circle,shorten >= -.18cm] (CVP) -- (P);
+
+
+%
+%	\node<9->[below = of P.south,text width=4cm] (Clifford) {\centering \color{blue} Clifford circuit simulation \cite{aaronson2008improved} /\\ Clifford circuit non-equivalence \cite{ours}};
+%	\draw<9->[-Circle,shorten >= -.2cm] (Clifford) -- (P.south);
+
+\end{tikzpicture}					
+
+
+
+%\pause[8]
+
+\centering
+\vfill
+
+
+%	\begin{block}{Despite hardness, we often focus on exact methods!}
+%\begin{itemize}
+%	\item This enables symbolic computation
+%	\item We can solve approximate problems using exact methods~\cite{wei2022accurate,hong2021approximate}.
+%\end{itemize}
+%	\end{block}
+	
+%\pause
+%\centering
+%\alert{(Actually \EQP and \QNP, which are gate-dependent.)}
+
+\end{refframe}
 
 
 

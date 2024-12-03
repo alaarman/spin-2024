@@ -480,7 +480,8 @@ Model counting (\#SAT) is the counting version ($\#\P$) of satisfiability (SAT).
 \pause
  
 \begin{alertblock}{Contributions}
-\begin{itemize}
+\begin{itemize}[<+->]
+\item Supports any gate set
 \item The encoding is linear in the number of qubits and gates:  $\mathcal O(n +m)$~\cite{mei2024simulating}
 \item We can use the same principle for equivalence checking~\cite{mei2024eq}
 %\item We have a different encoding that only requires negative weights (also for Clifford + $T$ gate set)
@@ -526,6 +527,7 @@ Model counting (\#SAT) is the counting version ($\#\P$) of satisfiability (SAT).
 		\item
 		\alert{Result: WMC encoding of length $\mathcal O(n +m)$ for $n$ qubits and $m$ gates}
 		\item Simulation and equivalence checking
+		\item Uses \#SAT solvers that support negative weights (GPMC, Ganak, D4)
 	\end{itemize}
 	
 	

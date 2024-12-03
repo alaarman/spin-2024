@@ -547,7 +547,7 @@ $\vec v = \ket 0 \otimes \hspace{-1em} \underbrace{\vec v_0}_{\text{$n-1$ qubits
 
     
 
-    \node[below= 2.5cm of a1]  (add)   {Algebraic DD (ADD)};
+    \node[below= 2.5cm of a1]  (add)   {Multi-terminal DD (MTDD)};
 
 
 \pause
@@ -608,7 +608,7 @@ $\vec v = \ket 0 \otimes \hspace{-1em} \underbrace{\vec v_0}_{\text{$n-1$ qubits
 
 \pause
 \centering
-\alert{(EVDD can be exponentially more succinct than ADD.)}
+\alert{(EVDD can be exponentially more succinct than MTDD.)}
 
 
 \end{frame}
@@ -630,8 +630,8 @@ $\vec v = \ket 0 \otimes \hspace{-1em} \underbrace{\vec v_0}_{\text{$n-1$ qubits
 \centering
 \scalebox{1.2}{\phantom{ZZZZZZZZZ}	
 $
- \ket{\underbrace{\phi_{i+1}}_{
-\oh(\alert m)}} ~~=~~ {U ~~\cdot~~ \ket{\underbrace{{\phi_i}}_{\mathclap{\alert m \text{ nodes}}}}}
+ \underbrace{\vec v_{i+1}}_{
+\oh(\alert m)} ~~=~~ {U ~~\cdot~~ \underbrace{{\vec v_i}}_{\mathclap{\alert m \text{ nodes}}}}
 $
 }
 \end{itemize}
@@ -651,7 +651,7 @@ $
  & \gate{X} & \qw  \\
 & \qw      & \qw \\% \lstick{\phi_1} \\
 & \qw      & \qw \\
-  & \dstick{X \otimes I \cdot \ket{\phi_i} = \ket{\phi_{i+1}}} & \dstick{}
+  & \dstick{X \otimes I \cdot {\vec v_i} = {\vec v_{i+1}}} & \dstick{}
 \gategroup{1}{2}{3}{2}{.7em}{--}
 }
 
@@ -709,7 +709,7 @@ X \otimes I \cdot
     \node[draw,circle,rectangle,minimum size=0.4cm, below= .45cm of a4] (w1) {$1$};
     
     % edges
-    \draw[<-] (a1) --++(90:2cm) node[,right=1mm,pos=.8] {\scalebox{1.4}{$\phi_i$}};
+    \draw[<-] (a1) --++(90:2cm) node[,right=1mm,pos=.8] {\scalebox{1.4}{$\vec v_i$}};
     \draw[e0] (a1) edge  node[,left,pos=.2] {} (a2);
     \draw[e1] (a1) edge  node[,right,pos=.2] {} (a3);
 
@@ -732,7 +732,7 @@ X \otimes I \cdot
     \node[draw,circle,rectangle,minimum size=0.4cm, below= .45cm of a4] (w1) {$1$};
     
     % edges
-    \draw[<-] (a1) --++(90:2cm) node[,right=1mm,pos=.8] {\scalebox{1.4}{$\phi_{i+1}$}};
+    \draw[<-] (a1) --++(90:2cm) node[,right=1mm,pos=.8] {\scalebox{1.4}{$\vec v_{i+1}$}};
     \draw[color=orange,e1] (a1) edge  node[left,pos=.2] {} (a2);
     \draw[color=orange,e0] (a1) edge  node[right,pos=.2] {} (a3);
 
